@@ -1816,7 +1816,6 @@ html.xp2-on .xp2{touch-action:none}
         .fromTo(`#x2s${i}Badge`, {opacity:0}, {opacity:1, duration:.2}, r + .4)
         .fromTo(`#x2s${i}Badge .bIn`, {scale:.2, transformOrigin:`${sc.head.x + 28}px ${sc.head.y - 22}px`}, {scale:1, duration:.5, ease:'back.out(3)'}, r + .4);
       C.timeScale(1.75);
-      C.eventCallback('onComplete', () => x2Step.autoNext(i));
       chats.push(C);
       const L = STOP + .3;
       // done: the chat clears and we step back
