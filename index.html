@@ -186,6 +186,9 @@ html.xp2-on .xp2{touch-action:none}
 .x2row{display:flex;align-items:center;gap:calc(12 * var(--u))}
 .x2row.me{justify-content:flex-end;padding-right:calc(46 * var(--u))}
 .x2b{background:#F9FAFB;border:1px solid #F3F4F6;border-radius:calc(24 * var(--u));padding:calc(20 * var(--u)) calc(17 * var(--u));font-weight:500;font-size:max(13px,calc(24 * var(--u)));letter-spacing:-.04em;line-height:1.2;max-width:max(230px,calc(430 * var(--u)));min-height:calc(73 * var(--u));display:flex;align-items:center}
+/* sent messages (Figma: Rebooked Flight - Correct message blob colours) */
+.x2row.me .x2b{background:#51A2FF;border-color:#F3F4F6;color:#fff;padding-left:calc(15 * var(--u) + 2px);padding-right:calc(15 * var(--u) + 2px)}
+.x2row.me .x2b .t.typing::after{background:#fff}
 .x2b .t.typing::after{content:"";display:inline-block;width:1.5px;height:1em;margin-left:2px;background:#000;vertical-align:-.12em;animation:x2caret .8s steps(1) infinite}
 @keyframes x2caret{50%{opacity:0}}
 .x2av{flex:none;width:max(32px,calc(72 * var(--u)));height:max(32px,calc(72 * var(--u)));border-radius:50%;overflow:hidden;background:#EDEAE2}
