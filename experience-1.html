@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ECCFFF" id="themeColor">
 <title>Experience 1 · Prael — Suiting up</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,12 +79,12 @@ html.lenis,html.lenis body{height:auto}
 .xp2-world{position:absolute;inset:0;width:100%;height:100%;display:block}
 #x2Space{display:none;height:1800vh}
 html.xp2-on #scrollSpace{display:none}
-html.xp2-on,html.xp2-on body{background:#F4F1E4}
+html.xp2-on,html.xp2-on body{background:#FFC281}
 html.xp2-on #x2Space{display:none}
 html.xp2-on,html.xp2-on body{overflow:hidden;overscroll-behavior:none;height:100%}
 html.xp2-on .xp2{touch-action:none}
-.x2-footer{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#ECCFFF 0%,#FFC281 100%);opacity:0;visibility:hidden}
-.x2-footer.on{visibility:visible}
+.x2-footer{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#ECCFFF 0%,#FFC281 100%);opacity:0;display:none}
+.x2-footer.on{display:block}
 .x2f-art{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .x2f-star{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;will-change:transform;transform-origin:76% 96%}
 .x2-footer.on.idle .x2f-star{animation:ftBreathe 4.6s ease-in-out infinite}
@@ -1667,13 +1668,14 @@ html.xp2-on .xp2{touch-action:none}
     function openApply(prefill){
       lastFocus = document.activeElement;
       ap.hidden = false; aForm.hidden = false; aDone.hidden = true;
+      const tc = document.getElementById('themeColor'); if (tc) tc.setAttribute('content', '#ECCFFF'); document.documentElement.style.backgroundColor = document.body.style.backgroundColor = '#FFC281';
       if (prefill) af.email.value = prefill;
       if (hasGsap) gsap.fromTo(ap, {opacity:0}, {opacity:1, duration:.35, ease:'power2.out'}), gsap.fromTo('#x2aForm > *', {opacity:0, y:18}, {opacity:1, y:0, duration:.5, stagger:.06, ease:'power3.out'});
       setTimeout(() => (af.first.value ? af.email : af.first).focus({preventScroll:true}), 60);
       x2Step.busy = true; clearTimeout(x2Step.autoT);   // the story waits while the form is open
     }
     function closeApply(){
-      const done = () => { ap.hidden = true; x2Step.busy = false; if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true}); };
+      const done = () => { ap.hidden = true; x2Step.busy = false; x2Step.chrome(x2Step.i); if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true}); };
       if (hasGsap) gsap.to(ap, {opacity:0, duration:.25, onComplete:done}); else done();
     }
     window.__openApply = openApply;
@@ -1741,7 +1743,7 @@ html.xp2-on .xp2{touch-action:none}
     gsap.set(['#x2Prael', '#x2Ring', '#x2Obj', '#x2Dim', '#x2Fade'], {opacity:0}); gsap.set('#x2BrandDark', {opacity:0}); gsap.set('#x2BrandLight', {opacity:1});
     gsap.set('.x2c > g', {scale:0, transformOrigin:'0 0'});
     gsap.set('#x2Reveal', {opacity:0, y:30}); gsap.set('#x2Intro', {opacity:1, y:0});
-    gsap.set('#x2Sky', {visibility:'visible'}); gsap.set('#x2World', {visibility:'visible'}); SK.p = 0; placeSkyScroll();
+    gsap.set('#x2Sky', {visibility:'visible', display:'block'}); gsap.set('#x2World', {visibility:'visible'}); SK.p = 0; placeSkyScroll();
     gsap.set('#x2Footer', {opacity:0, className:'x2-footer'}); gsap.set('#x2fTitle .w > span', {yPercent:115}); gsap.set(['#x2fSub', '#x2fForm'], {opacity:0}); placeFooterStar(0);
     const tl = x2.tl = gsap.timeline({defaults:{ease:'none'}, paused:true});
     const camTo = (c, d, at, ease = 'power2.inOut') => tl.to(x2.cam, {x:c.x, y:c.y, s:c.s, duration:d, ease, onUpdate:x2Apply}, at);
@@ -1851,7 +1853,7 @@ html.xp2-on .xp2{touch-action:none}
       .fromTo(SK, {p:0}, {p:1, duration:TILT, ease:'none', onUpdate:placeSkyScroll}, .1)
       .fromTo('#x2BrandDark', {opacity:0}, {opacity:1, duration:.5, immediateRender:false}, TILT * .55)
       .fromTo('#x2BrandLight', {opacity:1}, {opacity:0, duration:.5, immediateRender:false}, TILT * .55)
-      .set('#x2Sky', {visibility:'hidden'}, TILT + .12);
+      .set('#x2Sky', {visibility:'hidden', display:'none'}, TILT + .12);
     t += TILT;
     // Prael flies up from the crowd and grows into the footer (Figma: Footer)
     flyPrael({x:W2 / 2 + 140, y:H2 / 2 - 60}, 1.4, t - .6, 120);
@@ -2079,7 +2081,14 @@ html.xp2-on .xp2{touch-action:none}
         else if (instant) c.progress(0).pause();
       });
     },
-    arrive(){ this.busy = false; this.arrivedAt = performance.now(); const cur = this.i - 1, c = x2.chats && x2.chats[cur]; this.sync(); if (c && c.progress() < 1) c.play(); },
+    chrome(k){
+      // hero and footer sit on the lilac-to-peach sky; the street and chats on white
+      const sky = k === 0 || k === (x2.stops || []).length - 1;
+      const top = sky ? '#ECCFFF' : '#F9F8F4', bottom = sky ? '#FFC281' : '#FFFFFF';
+      const m = document.getElementById('themeColor'); if (m) m.setAttribute('content', top);
+      document.documentElement.style.backgroundColor = bottom; document.body.style.backgroundColor = bottom;
+    },
+    arrive(){ this.chrome(this.i); this.busy = false; this.arrivedAt = performance.now(); const cur = this.i - 1, c = x2.chats && x2.chats[cur]; this.sync(); if (c && c.progress() < 1) c.play(); },
     glide(time, dur, done){
       if (this.tw) this.tw.kill();
       if (!dur){ x2.tl.time(time); done && done(); return; }
@@ -2091,7 +2100,7 @@ html.xp2-on .xp2{touch-action:none}
       const from = this.i, to = Math.max(0, Math.min(x2.stops.length - 1, from + dir));
       if (to === from) return;
       const leaving = x2.chats && x2.chats[from - 1]; if (leaving) leaving.progress(1).pause();
-      this.i = to; this.busy = true;
+      this.i = to; this.busy = true; this.chrome(to);
       const dur = Math.max(.9, Math.min(2.1, Math.abs(x2.stops[to] - x2.stops[from]) * .26));
       this.glide(x2.stops[to], reduce ? 0 : dur, () => this.arrive());
     }
