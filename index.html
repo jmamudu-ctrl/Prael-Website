@@ -114,8 +114,9 @@ html.xp2-on .xp2{touch-action:none}
 }
 .x2-apply{position:absolute;inset:0;z-index:30;background:linear-gradient(180deg,#ECCFFF 0%,#FFC281 100%);display:flex;align-items:center;justify-content:center;overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 80px) 20px calc(env(safe-area-inset-bottom,0px) + 40px);box-sizing:border-box;color:#000}
 .x2-apply[hidden]{display:none}
-.x2a-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + max(18px,calc(80 * var(--u))));right:max(16px,calc(80 * var(--u)));width:48px;height:48px;border-radius:14px;border:1px solid rgba(54,65,83,.35);background:rgba(255,255,255,.35);display:grid;place-items:center;cursor:pointer}
-.x2a-close:hover{background:rgba(255,255,255,.6)}
+.x2a-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + max(18px,calc(80 * var(--u))));right:max(16px,calc(80 * var(--u)));width:48px;height:48px;border-radius:14px;border:0;background:#fff;display:grid;place-items:center;cursor:pointer}
+.x2a-close:hover{background:#fff;transform:scale(1.05)}
+.x2a-close{transition:transform .2s}
 .x2a-card{width:min(100%,max(320px,calc(744 * var(--u))));display:flex;flex-direction:column;align-items:flex-start}
 .x2a-card[hidden]{display:none}
 .x2a-done{width:min(100%,max(320px,calc(658 * var(--u))))}
@@ -130,7 +131,7 @@ html.xp2-on .xp2{touch-action:none}
 .x2a-field span{font-weight:600;font-size:max(14px,calc(18 * var(--u)));color:#101828}
 .x2a-field input,.x2a-code{font:inherit;font-weight:500;font-size:max(16px,calc(20 * var(--u)));color:#1E2939;height:max(48px,calc(56 * var(--u)));box-sizing:border-box;padding:0 max(16px,calc(33 * var(--u)));border-radius:12px;border:0;background:rgba(255,255,255,.29);box-shadow:none;outline:none;width:100%}
 .x2a-field input::placeholder{color:#1E2939;opacity:.8}
-.x2a-field input:focus{background:rgba(255,255,255,.5);box-shadow:0 0 0 2px rgba(16,24,40,.18)}
+.x2a-field input:focus{background:#fff;box-shadow:none}
 
 .x2a-err{font-style:normal;font-weight:600;font-size:max(14px,calc(18 * var(--u)));color:#C10007;min-height:0;margin:0}
 .x2a-err:empty{display:none}
