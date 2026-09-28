@@ -226,7 +226,8 @@ html.xp2-on .xp2{touch-action:none}
 /* ---- completed-state cards ---- */
 .x2res:has(.rc-scene,.rc-label,.rc-dinner,.rc-receipt,.rc-cal){display:block}
 .rc-scene{perspective:900px;width:calc(560 * var(--u));max-width:100%}
-.rc-pass{position:relative;display:flex;border-radius:calc(18 * var(--u));overflow:hidden;background:#fff;color:#0F1B3D;box-shadow:0 18px 40px -18px rgba(15,27,61,.45),0 2px 0 rgba(15,27,61,.06);transform:rotateX(9deg) rotateY(-12deg);transform-style:preserve-3d;animation:rcFloat 6s ease-in-out infinite}
+.rc-3d{transform-style:preserve-3d;transform:rotateX(9deg) rotateY(-12deg);animation:rcFloat 6s ease-in-out infinite;width:fit-content;max-width:100%}
+.rc-pass{position:relative;display:flex;border-radius:calc(18 * var(--u));overflow:hidden;background:#fff;color:#0F1B3D;box-shadow:0 18px 40px -18px rgba(15,27,61,.45),0 2px 0 rgba(15,27,61,.06)}
 @keyframes rcFloat{50%{transform:rotateX(4deg) rotateY(8deg) translateY(-4px)}}
 .rc-pass-main{flex:1;padding:calc(18 * var(--u)) calc(22 * var(--u));background:linear-gradient(135deg,#FFFFFF 0%,#F4F7FF 100%)}
 .rc-pass-top{display:flex;justify-content:space-between;font:600 max(10px,calc(13 * var(--u)))/1 "IBM Plex Mono",monospace;letter-spacing:.12em;color:#fff;background:#0F1B3D;margin:calc(-18 * var(--u)) calc(-22 * var(--u)) calc(14 * var(--u));padding:calc(12 * var(--u)) calc(22 * var(--u))}
@@ -250,7 +251,7 @@ html.xp2-on .xp2{touch-action:none}
 .x2res.in .rc-shine{animation:rcShine 3.4s ease-in-out .3s infinite}
 @keyframes rcShine{0%{transform:translateX(-60%)}55%,100%{transform:translateX(60%)}}
 
-.rc-label{position:relative;width:calc(540 * var(--u));max-width:100%;background:#FFFDF6;border:2px solid #1F1A12;border-radius:6px;color:#1F1A12;box-shadow:0 14px 30px -18px rgba(0,0,0,.45);transform:rotate(-1.5deg);font-family:"IBM Plex Mono",monospace}
+.rc-label{position:relative;overflow:hidden;width:calc(540 * var(--u));max-width:100%;background:#FFFDF6;border:2px solid #1F1A12;border-radius:6px;color:#1F1A12;box-shadow:0 14px 30px -18px rgba(0,0,0,.45);transform:rotate(-1.5deg);font-family:"IBM Plex Mono",monospace}
 .rc-label-head{display:flex;justify-content:space-between;align-items:center;background:#351C15;color:#FFB500;padding:calc(10 * var(--u)) calc(16 * var(--u));font-weight:600;font-size:max(11px,calc(15 * var(--u)))}
 .rc-label-head b{font-family:var(--font);font-weight:800;font-size:max(18px,calc(26 * var(--u)));letter-spacing:-.02em}
 .rc-label-body{padding:calc(12 * var(--u)) calc(16 * var(--u));font-size:max(11px,calc(14 * var(--u)));line-height:1.35;border-bottom:2px solid #1F1A12}
@@ -274,7 +275,7 @@ html.xp2-on .xp2{touch-action:none}
 .rc-dine em{color:#B8946A}
 .rc-note{margin:calc(12 * var(--u)) 0 0;font-size:max(11px,calc(14 * var(--u)));color:#CDB894}
 
-.rc-receipt{position:relative;width:calc(420 * var(--u));max-width:100%;background:#FFFEFA;color:#23201B;font-family:"IBM Plex Mono",monospace;padding:calc(18 * var(--u)) calc(22 * var(--u)) calc(26 * var(--u));box-shadow:0 14px 30px -18px rgba(0,0,0,.4);transform:rotate(1.2deg);
+.rc-receipt{position:relative;overflow:hidden;width:calc(420 * var(--u));max-width:100%;background:#FFFEFA;color:#23201B;font-family:"IBM Plex Mono",monospace;padding:calc(18 * var(--u)) calc(22 * var(--u)) calc(26 * var(--u));box-shadow:0 14px 30px -18px rgba(0,0,0,.4);transform:rotate(1.2deg);
   -webkit-mask:linear-gradient(#000,#000) top/100% calc(100% - 10px) no-repeat,radial-gradient(circle at 8px 0,transparent 7px,#000 7.5px) bottom left/16px 10px repeat-x;mask:linear-gradient(#000,#000) top/100% calc(100% - 10px) no-repeat,radial-gradient(circle at 8px 0,transparent 7px,#000 7.5px) bottom left/16px 10px repeat-x}
 .rc-rhead{margin:0;text-align:center;font-weight:600;letter-spacing:.14em;font-size:max(12px,calc(16 * var(--u)))}
 .rc-rsub{margin:4px 0 calc(10 * var(--u));text-align:center;color:#8A8577;font-size:max(10px,calc(12 * var(--u)))}
@@ -284,7 +285,7 @@ html.xp2-on .xp2{touch-action:none}
 .x2res.in .rc-paid{animation:rcPaid .45s cubic-bezier(.2,1.6,.4,1) .45s forwards}
 @keyframes rcPaid{to{transform:rotate(-14deg) scale(1);opacity:.85}}
 
-.rc-cal{--hr:calc(30 * var(--u));width:calc(540 * var(--u));max-width:100%;background:#fff;border-radius:calc(16 * var(--u));box-shadow:0 18px 40px -20px rgba(16,24,40,.45),0 0 0 1px #EEF0F3;overflow:hidden}
+.rc-cal{position:relative;--hr:calc(30 * var(--u));width:calc(540 * var(--u));max-width:100%;background:#fff;border-radius:calc(16 * var(--u));box-shadow:0 18px 40px -20px rgba(16,24,40,.45),0 0 0 1px #EEF0F3;overflow:hidden}
 .rc-cal-head{display:flex;align-items:center;gap:calc(14 * var(--u));padding:calc(12 * var(--u)) calc(16 * var(--u));border-bottom:1px solid #EEF0F3}
 .rc-cal-head b{display:block;font-weight:600;font-size:max(14px,calc(20 * var(--u)))}
 .rc-cal-head span{font-size:max(11px,calc(14 * var(--u)));color:#6B7280}
@@ -308,7 +309,7 @@ html.xp2-on .xp2{touch-action:none}
 .rc-hand{position:absolute;right:calc(8 * var(--u));top:calc(4.6 * var(--hr));margin:0;font-family:Caveat,cursive;font-weight:700;font-size:max(15px,calc(22 * var(--u)));color:#FF8400;transform:rotate(-6deg);opacity:0}
 .x2res.in .rc-hand{animation:rcFade .5s ease-out 1.5s forwards}
 @keyframes rcFade{to{opacity:1}}
-@media (prefers-reduced-motion: reduce){.rc-pass,.rc-holo,.rc-shine,.rc-foil{animation:none !important}}
+@media (prefers-reduced-motion: reduce){.rc-3d,.rc-holo,.rc-shine,.rc-foil{animation:none !important}}
 @media (max-aspect-ratio: 9/10){ .rc-cal{--hr:calc(24 * var(--u))} .x2res{justify-content:center} }
 
 .x2res .stub{width:calc(44 * var(--u));height:calc(215 * var(--u));background:#F2F2F2;border-radius:calc(11 * var(--u))}
@@ -1695,8 +1696,12 @@ html.xp2-on .xp2{touch-action:none}
   // completed states: each one looks like the real thing Prael sorted out
   const BARS = n => Array.from({length:n}, (_, i) => `<i style="width:${[1,2,1,3,1,2,2,1,3,1][i % 10]}px"></i>`).join('');
   function resultHTML(r){
+    const inner = resultCard(r);
+    return r.kind === 'list' ? inner : `<div class="rc-scene"><div class="rc-3d">${inner}</div></div>`;
+  }
+  function resultCard(r){
     if (r.kind === 'pass') return `
-      <div class="rc-scene"><div class="rc-pass">
+      <div class="rc-pass">
         <div class="rc-pass-main">
           <div class="rc-pass-top"><span>BOARDING PASS</span><span>ECONOMY</span></div>
           <div class="rc-route"><b>${esc(r.from)}</b><span class="rc-plane">✈</span><b>${esc(r.to)}</b></div>
@@ -1705,7 +1710,7 @@ html.xp2-on .xp2{touch-action:none}
         </div>
         <div class="rc-pass-stub"><div class="rc-bars">${BARS(34)}</div><div class="rc-holo"></div></div>
         <div class="rc-shine"></div>
-      </div></div>`;
+      </div>`;
     if (r.kind === 'label') return `
       <div class="rc-label">
         <div class="rc-label-head"><b>UPS</b><span>RETURN · GROUND</span></div>
@@ -1715,6 +1720,7 @@ html.xp2-on .xp2{touch-action:none}
         </div>
         <div class="rc-label-code"><div class="rc-bars">${BARS(46)}</div><small>1Z 999 AA1 01 2345 6784</small></div>
         <div class="rc-stamp">RETURN BOOKED</div>
+        <div class="rc-shine"></div>
       </div>`;
     if (r.kind === 'dinner') return `
       <div class="rc-dinner">
@@ -1724,6 +1730,7 @@ html.xp2-on .xp2{touch-action:none}
         <div class="rc-rule"><span>✦</span></div>
         <div class="rc-dine"><span><em>Saturday</em>8:00 PM</span><span><em>Party</em>4 guests</span><span><em>Table</em>Corner</span></div>
         <p class="rc-note">Happy birthday, Mom 🎂 · added to your calendar</p>
+        <div class="rc-shine"></div>
       </div>`;
     if (r.kind === 'receipt') return `
       <div class="rc-receipt">
@@ -1734,6 +1741,7 @@ html.xp2-on .xp2{touch-action:none}
         <div class="rc-rline rc-rtotal"><span>TOTAL PAID</span><span>$142.18</span></div>
         <p class="rc-rsub">Approved by you · just now · Ref 88-2210</p>
         <div class="rc-paid">PAID</div>
+        <div class="rc-shine"></div>
       </div>`;
     if (r.kind === 'calendar') return `
       <div class="rc-cal">
@@ -1747,6 +1755,7 @@ html.xp2-on .xp2{touch-action:none}
           <svg class="rc-arrow" viewBox="0 0 120 200" preserveAspectRatio="none" aria-hidden="true"><path d="M20 12 C 110 40, 110 150, 30 188" fill="none" stroke="#FF8400" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 7"/><path d="M30 188 l12 -4 M30 188 l6 -11" stroke="#FF8400" stroke-width="3" stroke-linecap="round"/></svg>
           <p class="rc-hand">moved by Prael ✓</p>
         </div>
+        <div class="rc-shine"></div>
       </div>`;
     return `<div class="stub"></div><div class="main"><div class="list">${r.rows.map(([a, b]) => `<div><span>${esc(a)}</span><b>${esc(b)}</b></div>`).join('')}</div></div>`;
   }
