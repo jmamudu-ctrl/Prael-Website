@@ -86,11 +86,19 @@ html.xp2-on .xp2{touch-action:none}
 .x2-footer{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#ECCFFF 0%,#FFC281 100%);opacity:0;display:none}
 .x2-footer.on{display:block}
 .x2f-art{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.x2f-art .ftCloud > path{animation:ftDrift 14s ease-in-out infinite alternate;transform-box:fill-box}
+.x2f-art g:nth-of-type(2) .ftCloud > path{animation-duration:18s;animation-delay:-6s}
+.x2f-art g:nth-of-type(3) .ftCloud > path{animation-duration:22s;animation-delay:-3s}
+.x2f-art g:nth-of-type(4) .ftCloud > path{animation-duration:16s;animation-delay:-9s}
+@keyframes ftDrift{from{transform:translateX(-28px)}to{transform:translateX(34px)}}
+@media (prefers-reduced-motion: reduce){.x2f-art .ftCloud > path{animation:none}}
 .ft-orbit{position:absolute;inset:0;pointer-events:none;perspective:1600px;perspective-origin:74% 52%;opacity:0;transition:opacity 1s ease}
 .x2-footer.idle .ft-orbit{opacity:1}
-.ft-p{position:absolute;left:0;top:0;transform-style:preserve-3d;will-change:transform}
-.ft-p img{position:absolute;left:0;top:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;filter:drop-shadow(0 10px 14px rgba(80,40,10,.18))}
-.ft-p img.b{transform:rotateY(180deg)}
+.ft-p{position:absolute;left:0;top:0;transform-style:preserve-3d;will-change:transform;pointer-events:auto;cursor:pointer}
+.ft-p .fx{position:absolute;inset:0;transform-style:preserve-3d}
+.ft-burst{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;background:#FFB05C;will-change:transform,opacity}
+.ft-p .fx img{position:absolute;left:0;top:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;filter:drop-shadow(0 10px 14px rgba(80,40,10,.18))}
+.ft-p .fx img.b{transform:rotateY(180deg)}
 .x2f-star{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;will-change:transform;transform-origin:76% 96%}
 .x2-footer.on.idle .x2f-star{animation:ftBreathe 4.6s ease-in-out infinite}
 @keyframes ftBreathe{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}50%{transform:translateY(-.6%) rotate(.7deg) scale(1.006)}}
@@ -1972,11 +1980,29 @@ html.xp2-on .xp2{touch-action:none}
       const el = document.createElement('div'); el.className = 'ft-p';
       const a = new Image(); a.src = fc.toDataURL('image/png'); a.alt = '';
       const b = new Image(); b.src = bc.toDataURL('image/png'); b.alt = ''; b.className = 'b';
-      el.append(a, b); back.appendChild(el);
+      const fx = document.createElement('div'); fx.className = 'fx'; fx.append(a, b); el.append(fx); back.appendChild(el);
+      el.addEventListener('click', e => dissolveTicket(FTO.items.find(t => t.el === el), e));
       FTO.items.push({el, w:doc.w, h:doc.h, angle:(i / DOCS.length) * Math.PI * 2, y:((i % 5) - 2) * .16 + ((i * 37) % 10 - 5) / 70,
         lean:((i * 53) % 11 - 5) / 40, roll:((i * 29) % 9 - 4) * 3, speed:.16 + (i % 3) * .015, seed:i * 1.7, inFront:false});
     });
     measureFooterOrbit();
+  }
+  // tap a ticket and it dissolves: one less thing on your plate
+  function dissolveTicket(it, e){
+    if (!it || it.gone) return; it.gone = true;
+    const fx = it.el.querySelector('.fx'), r = it.el.getBoundingClientRect(), host = $('#ftOrbitFront');
+    const done = () => { it.el.remove(); };
+    if (!hasGsap || reduce){ done(); return; }
+    gsap.to(fx, {opacity:0, scale:1.18, y:-18, filter:'blur(10px) saturate(1.4)', duration:.7, ease:'power2.out', onComplete:done});
+    // a little burst of warm sparks from the ticket
+    const cx = e && e.clientX ? e.clientX : r.left + r.width / 2, cy = e && e.clientY ? e.clientY : r.top + r.height / 2;
+    for (let k = 0; k < 14; k++){
+      const d = document.createElement('span'); d.className = 'ft-burst';
+      d.style.background = ['#FFB05C', '#FF8400', '#FFFFFF', '#F2B98F'][k % 4];
+      d.style.left = (cx - 4) + 'px'; d.style.top = (cy - 4) + 'px'; host.appendChild(d);
+      const a = (k / 14) * Math.PI * 2 + Math.random() * .4, dist = 40 + Math.random() * 70;
+      gsap.fromTo(d, {x:0, y:0, scale:1, opacity:1}, {x:Math.cos(a) * dist, y:Math.sin(a) * dist - 20, scale:.2, opacity:0, duration:.8 + Math.random() * .4, ease:'power2.out', onComplete:() => d.remove()});
+    }
   }
   function measureFooterOrbit(){
     const p = $('#ftStarPath'); if (!p) return;
@@ -1991,6 +2017,7 @@ html.xp2-on .xp2{touch-action:none}
     if (!FTO.on){ FTO.on = true; measureFooterOrbit(); }
     const back = $('#ftOrbitBack'), front = $('#ftOrbitFront'), tilt = 16.5 * Math.PI / 180;
     FTO.items.forEach(it => {
+      if (it.gone) return;
       const a = it.angle + T * it.speed * (reduce ? 0 : 1);
       const ox = Math.cos(a) * FTO.R, oz = Math.sin(a) * FTO.R * .9;
       let oy = it.y * FTO.R + Math.sin(T * .8 + it.seed) * 6 * FTO.s;
