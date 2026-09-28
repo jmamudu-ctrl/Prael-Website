@@ -1644,7 +1644,7 @@ html.xp2-on .xp2{touch-action:none}
   }
   // footer Prael: final pose is the hero star scaled 1.36 and moved, as in the Figma Footer frame
   // Footer v1 pose (k 1.36) re-scaled to the smaller Footer v2 frame, centred where the v2 frame puts him
-  const FT_V1 = {k:1.36, x:-456, y:-187, fx:1419.5, fy:982.5}, FT_V2 = {k:.626, fx:1450, fy:560};
+  const FT_V1 = {k:1.36, x:-456, y:-187, fx:1419.5, fy:982.5}, FT_V2 = {k:.626, fx:1450, fy:560}, FT_SIZE = .5;
   let ftCenter = {x:224.17 + 1369.84 / 2 + 497, y:235.43 + 1321.61 / 2};
   function placeFooterStar(v){
     const star = $('#ftStar');
@@ -1652,7 +1652,7 @@ html.xp2-on .xp2{touch-action:none}
     const c = x2.cam, w = W2 / c.s, h = H2 / c.s, vx = c.x - w / 2, vy = c.y - h / 2;
     const sx = (PR.x - vx) * c.s, sy = (PR.y - vy) * c.s;
     // phones: a smaller Prael, bottom centre, under the copy
-    const portrait = x2Portrait(), K = portrait ? .44 : FT_V2.k;
+    const portrait = x2Portrait(), K = (portrait ? .44 : FT_V2.k) * FT_SIZE;
     $('#x2Footer .x2f-art').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
     $('#x2Footer .x2f-star').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
     const k0 = .032 * c.s * K;
@@ -1981,7 +1981,7 @@ html.xp2-on .xp2{touch-action:none}
   function measureFooterOrbit(){
     const p = $('#ftStarPath'); if (!p) return;
     const r = p.getBoundingClientRect(); if (!r.width) return;
-    FTO.cx = r.left + r.width / 2; FTO.cy = r.top + r.height * .54; FTO.R = r.width * .7; FTO.s = Math.max(.42, Math.min(1, r.width / 860));
+    FTO.cx = r.left + r.width / 2; FTO.cy = r.top + r.height * .54; FTO.R = r.width * .78; FTO.s = Math.max(.3, Math.min(1, r.width / 640));
   }
   addEventListener('resize', () => { if (FTO.built) setTimeout(measureFooterOrbit, 300); });
   function footerOrbitTick(T){
