@@ -83,7 +83,9 @@ html.xp2-on,html.xp2-on body{background:#FFC281}
 html.xp2-on #x2Space{display:none}
 html.xp2-on,html.xp2-on body{overflow:hidden;overscroll-behavior:none;height:100%}
 html.xp2-on .xp2{touch-action:none}
-.x2-footer{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#ECCFFF 0%,#FFC281 100%);opacity:0;display:none}
+.x2-footer{position:absolute;inset:0;overflow:hidden;background:#fff;opacity:0;display:none}
+.x2-footer .x2f-art > g{display:none}   /* v3 has no clouds (the svg stays: Prael's gradients live in it) */
+#ftStem path{stroke:#F4F4F4}      /* v3: Prael's curl in soft grey */
 .x2-footer.on{display:block}
 .x2f-art{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .x2f-art .ftCloud > path{animation:ftDrift 14s ease-in-out infinite alternate;transform-box:fill-box}
@@ -96,19 +98,19 @@ html.xp2-on .xp2{touch-action:none}
 .x2-footer.idle .ft-orbit{opacity:1}
 .ft-p{position:absolute;left:0;top:0;transform-style:preserve-3d;will-change:transform;pointer-events:auto;cursor:pointer}
 .ft-p .fx{position:absolute;inset:0;transform-style:preserve-3d}
-.ft-burst{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;background:#FFB05C;will-change:transform,opacity}
-.ft-p .fx img{position:absolute;left:0;top:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;filter:drop-shadow(0 10px 14px rgba(80,40,10,.18))}
+.ft-burst{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;background:#C9CDD3;will-change:transform,opacity}
+.ft-p .fx img{position:absolute;left:0;top:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;filter:grayscale(1) contrast(.92) brightness(1.04) drop-shadow(0 10px 16px rgba(30,35,45,.16))}
 .ft-p .fx img.b{transform:rotateY(180deg)}
 .x2f-star{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;will-change:transform;transform-origin:76% 96%}
 .x2-footer.on.idle .x2f-star{animation:ftBreathe 4.6s ease-in-out infinite}
 @keyframes ftBreathe{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}50%{transform:translateY(-.6%) rotate(.7deg) scale(1.006)}}
 @media (prefers-reduced-motion: reduce){.x2-footer.on.idle .x2f-star{animation:none}}
-.x2f-copy{position:absolute;left:max(20px,calc(80 * var(--u)));top:calc(50% - 147 * var(--u));transform:none;width:max(340px,calc(773 * var(--u)));display:flex;flex-direction:column;gap:calc(22 * var(--u));color:#3B2308}
+.x2f-copy{position:absolute;left:50%;top:calc(50% - 345 * var(--u));transform:translateX(-50%);align-items:center;text-align:center;width:min(calc(100% - 40px),max(340px,calc(773 * var(--u))));display:flex;flex-direction:column;gap:calc(22 * var(--u));color:#3B2308}
 .hero .x2f-copy h2,.x2f-copy h2{font-weight:600;font-size:max(28px,calc(72 * var(--u)));letter-spacing:-.06em;line-height:1.2;margin:0;color:#3B2308}
 .x2f-copy h2 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.12em .08em .24em;margin:-.12em -.08em -.24em}
 .x2f-copy h2 .w > span{display:inline-block}
-.x2f-copy p{margin:0;font-size:max(15px,calc(24 * var(--u)));color:#000;max-width:max(300px,calc(624 * var(--u)))}
-.x2f-form{position:relative;z-index:2;display:flex;align-items:center;gap:calc(22 * var(--u));flex-wrap:nowrap;pointer-events:auto;width:max-content}
+.x2f-copy p{margin:0;font-size:max(15px,calc(24 * var(--u)));color:#000;max-width:max(300px,calc(624 * var(--u)));text-align:left}
+.x2f-form{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:calc(22 * var(--u));flex-wrap:nowrap;pointer-events:auto;width:max-content}
 .x2f-form input{font:inherit;line-height:1.2;height:max(48px,calc(58 * var(--u)));font-weight:500;font-size:max(15px,calc(18 * var(--u)));letter-spacing:-.06em;color:#101828;background:#F8FAFC;border:0;border-radius:999px;padding:calc(18 * var(--u)) max(18px,calc(48 * var(--u)));width:max(210px,calc(414 * var(--u)));min-height:48px;box-sizing:border-box;outline:none}
 .x2f-form input:focus-visible{box-shadow:0 0 0 3px rgba(47,13,104,.35)}
 .x2f-form .cta{font:inherit;font-weight:600;font-size:max(14px,calc(18 * var(--u))) !important;letter-spacing:-.06em;color:#fff;background:#000;border:0;border-radius:max(18px,calc(24 * var(--u)));padding:0 max(22px,calc(48 * var(--u))) !important;cursor:pointer;transition:transform .2s,background .2s;line-height:1.2;min-height:0;height:max(44px,calc(58 * var(--u)));box-sizing:border-box;font-size:max(15px,calc(18 * var(--u)));padding:calc(18 * var(--u)) calc(48 * var(--u))}
@@ -120,7 +122,7 @@ html.xp2-on .xp2{touch-action:none}
 .x2f-form .cta:hover{background:#1a1a1a;transform:translateY(-1px)}
 .x2f-form .cta:focus-visible{outline:3px solid #2F0D68;outline-offset:3px}
 @media (max-aspect-ratio: 9/10){
-  .x2f-copy{left:20px;right:20px;width:auto;top:calc(env(safe-area-inset-top,0px) + 90px);transform:none}
+  .x2f-copy{left:20px;right:20px;width:auto;top:calc(env(safe-area-inset-top,0px) + 96px);transform:none}
   .hero .x2f-copy h2,.x2f-copy h2{font-size:clamp(34px,9.6vw,56px)}
   .x2f-form{flex-wrap:wrap;width:auto}
   .x2f-form input{width:100%;padding:14px 22px}
@@ -1652,7 +1654,7 @@ html.xp2-on .xp2{touch-action:none}
   }
   // footer Prael: final pose is the hero star scaled 1.36 and moved, as in the Figma Footer frame
   // Footer v1 pose (k 1.36) re-scaled to the smaller Footer v2 frame, centred where the v2 frame puts him
-  const FT_V1 = {k:1.36, x:-456, y:-187, fx:1419.5, fy:982.5}, FT_V2 = {k:.626, fx:1450, fy:560}, FT_SIZE = .5;
+  const FT_V3 = {k:1.029, x:968, y:1150};
   let ftCenter = {x:224.17 + 1369.84 / 2 + 497, y:235.43 + 1321.61 / 2};
   function placeFooterStar(v){
     const star = $('#ftStar');
@@ -1660,13 +1662,12 @@ html.xp2-on .xp2{touch-action:none}
     const c = x2.cam, w = W2 / c.s, h = H2 / c.s, vx = c.x - w / 2, vy = c.y - h / 2;
     const sx = (PR.x - vx) * c.s, sy = (PR.y - vy) * c.s;
     // phones: a smaller Prael, bottom centre, under the copy
-    const portrait = x2Portrait(), K = (portrait ? .44 : FT_V2.k) * FT_SIZE;
+    const portrait = x2Portrait(), K = portrait ? .62 : FT_V3.k;
     $('#x2Footer .x2f-art').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
     $('#x2Footer .x2f-star').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
     const k0 = .032 * c.s * K;
     const e = v, k = k0 + (K - k0) * e;
-    const e1x = ftCenter.x * FT_V1.k + FT_V1.x, e1y = ftCenter.y * FT_V1.k + FT_V1.y, r = FT_V2.k / FT_V1.k;
-    const endX = portrait ? 960 : FT_V2.fx + (e1x - FT_V1.fx) * r, endY = portrait ? 850 : FT_V2.fy + (e1y - FT_V1.fy) * r;
+    const endX = portrait ? 960 : FT_V3.x, endY = portrait ? 1010 : FT_V3.y;
     const x = sx + (endX - sx) * e, y = sy + (endY - sy) * e, rot = (1 - e) * -12;
     star.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(2)}) scale(${k.toFixed(4)}) translate(${(-ftCenter.x).toFixed(1)} ${(-ftCenter.y).toFixed(1)})`);
     $('#x2Footer').classList.toggle('idle', v >= .999);
@@ -1998,7 +1999,7 @@ html.xp2-on .xp2{touch-action:none}
     const cx = e && e.clientX ? e.clientX : r.left + r.width / 2, cy = e && e.clientY ? e.clientY : r.top + r.height / 2;
     for (let k = 0; k < 14; k++){
       const d = document.createElement('span'); d.className = 'ft-burst';
-      d.style.background = ['#FFB05C', '#FF8400', '#FFFFFF', '#F2B98F'][k % 4];
+      d.style.background = ['#D1D5DB', '#9CA3AF', '#E5E7EB', '#6B7280'][k % 4];
       d.style.left = (cx - 4) + 'px'; d.style.top = (cy - 4) + 'px'; host.appendChild(d);
       const a = (k / 14) * Math.PI * 2 + Math.random() * .4, dist = 40 + Math.random() * 70;
       gsap.fromTo(d, {x:0, y:0, scale:1, opacity:1}, {x:Math.cos(a) * dist, y:Math.sin(a) * dist - 20, scale:.2, opacity:0, duration:.8 + Math.random() * .4, ease:'power2.out', onComplete:() => d.remove()});
@@ -2007,7 +2008,8 @@ html.xp2-on .xp2{touch-action:none}
   function measureFooterOrbit(){
     const p = $('#ftStarPath'); if (!p) return;
     const r = p.getBoundingClientRect(); if (!r.width) return;
-    FTO.cx = r.left + r.width / 2; FTO.cy = r.top + r.height * .54; FTO.R = r.width * .78; FTO.s = Math.max(.3, Math.min(1, r.width / 640));
+    const vis = Math.min(r.bottom, innerHeight) - r.top;
+    FTO.cx = r.left + r.width / 2; FTO.cy = r.top + vis * .5; FTO.R = Math.min(r.width * .52, innerWidth * .46); FTO.s = Math.max(.45, Math.min(1.05, r.width / 1400));
   }
   addEventListener('resize', () => { if (FTO.built) setTimeout(measureFooterOrbit, 300); });
   function footerOrbitTick(T){
@@ -2166,7 +2168,8 @@ html.xp2-on .xp2{touch-action:none}
     chrome(k){
       // hero and footer sit on the lilac-to-peach sky; the street and chats on white
       const sky = k === 0 || k === (x2.stops || []).length - 1;
-      const top = sky ? '#ECCFFF' : '#F9F8F4', bottom = sky ? '#FFC281' : '#FFFFFF';
+      const last = k === (x2.stops || []).length - 1;
+      const top = last ? '#FFFFFF' : sky ? '#ECCFFF' : '#F9F8F4', bottom = last ? '#FFB05C' : sky ? '#FFC281' : '#FFFFFF';
       const m = document.getElementById('themeColor'); if (m) m.setAttribute('content', top);
       document.documentElement.style.backgroundColor = bottom; document.body.style.backgroundColor = bottom;
     },
