@@ -101,6 +101,20 @@ html.xp2-on .xp2{touch-action:none}
 .ft-burst{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;background:#C9CDD3;will-change:transform,opacity}
 .ft-p .fx img{position:absolute;left:0;top:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;filter:grayscale(1) contrast(.92) brightness(1.04) drop-shadow(0 10px 16px rgba(30,35,45,.16))}
 .ft-p .fx img.b{transform:rotateY(180deg)}
+.x2-footer .ft-crowd{display:none !important}   /* the plate replaces the crowd */
+.ft-plate{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + max(24px,calc(40 * var(--u))));transform:translateX(-50%);width:min(92vw,calc(1000 * var(--u)));aspect-ratio:1000/420;pointer-events:none}
+.ft-dish{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ft-pile{position:absolute;left:50%;top:52%;width:0;height:0}
+.tc{--w:min(58vw,calc(300 * var(--u)));position:absolute;left:0;top:0;width:var(--w);margin-left:calc(var(--w) / -2);margin-top:calc(var(--w) * -.14);display:flex;align-items:center;gap:calc(12 * var(--u));padding:calc(12 * var(--u)) calc(14 * var(--u));box-sizing:border-box;border-radius:calc(16 * var(--u) + 2px);background:#fff;box-shadow:0 1px 0 rgba(16,24,40,.04),0 10px 24px -12px rgba(16,24,40,.35),0 0 0 1px #EEF0F3;will-change:transform}
+.tc-ic{flex:none;width:max(30px,calc(44 * var(--u)));height:max(30px,calc(44 * var(--u)));border-radius:calc(12 * var(--u) + 2px);display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 14%,#fff)}
+.tc-ic svg{width:55%;height:55%}
+.tc-tx{display:flex;flex-direction:column;min-width:0;line-height:1.15}
+.tc-tx b{font-weight:600;font-size:max(13px,calc(20 * var(--u)));letter-spacing:-.03em;color:#101828;white-space:nowrap}
+.tc-tx em{font-style:normal;font-size:max(11px,calc(15 * var(--u)));color:#667085;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tc-tk{position:absolute;right:calc(-8 * var(--u));top:calc(-8 * var(--u));width:max(22px,calc(30 * var(--u)));height:max(22px,calc(30 * var(--u)));border-radius:50%;background:#22C55E;display:grid;place-items:center;box-shadow:0 0 0 3px #fff;transform:scale(0)}
+.tc-tk svg{width:62%;height:62%}
+.ft-cleared{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-weight:600;font-size:max(15px,calc(24 * var(--u)));letter-spacing:-.03em;color:#16A34A;opacity:0;white-space:nowrap}
+@media (max-aspect-ratio: 9/10){ .ft-plate{width:96vw} .tc{--w:52vw} }
 .ft-crowd{position:absolute;left:0;right:0;bottom:0;height:min(76vh,calc(100vw * .56));overflow:hidden;pointer-events:none;
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 26%);mask-image:linear-gradient(180deg,transparent 0,#000 26%)}
 .ft-crowd-video{position:absolute;left:0;bottom:-8vw;width:100%;height:auto;background:transparent}
@@ -612,8 +626,27 @@ html.xp2-on .xp2{touch-action:none}
 </g></g></g>
     </svg>
     <div class="ft-orbit ft-front" id="ftOrbitFront" aria-hidden="true"></div>
+<div class="ft-plate" id="ftPlate" aria-hidden="true">
+      <svg class="ft-dish" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMax meet">
+        <defs>
+          <radialGradient id="plRim" cx="50%" cy="42%" r="60%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".78" stop-color="#F4F5F8"/><stop offset="1" stop-color="#DDE0E7"/></radialGradient>
+          <radialGradient id="plWell" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#ECEEF3"/></radialGradient>
+          <filter id="plShadow" x="-20%" y="-20%" width="140%" height="160%"><feGaussianBlur stdDeviation="18"/></filter>
+          <linearGradient id="plShine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+          <clipPath id="plClip"><ellipse cx="500" cy="220" rx="470" ry="170"/></clipPath>
+        </defs>
+        <ellipse cx="500" cy="290" rx="440" ry="110" fill="rgba(40,50,80,.22)" filter="url(#plShadow)"/>
+        <ellipse cx="500" cy="232" rx="470" ry="170" fill="#D9DCE4"/>
+        <ellipse cx="500" cy="220" rx="470" ry="170" fill="url(#plRim)"/>
+        <ellipse cx="500" cy="222" rx="330" ry="112" fill="url(#plWell)" stroke="#E3E6EC" stroke-width="3"/>
+        <ellipse cx="500" cy="226" rx="330" ry="112" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="2" transform="translate(0 -4)"/>
+        <g clip-path="url(#plClip)"><rect class="pl-shine" x="-300" y="0" width="260" height="420" fill="url(#plShine)" transform="skewX(-20)"/></g>
+      </svg>
+      <div class="ft-pile"><div class="tc" data-x="-0.2" data-y="-0.02" data-r="-9" style="--c:#F63B89"><span class="tc-ic"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-1.5-3-5-3.5-5-1.2C7 7 12 7 12 7Zm0 0c1.5-3 5-3.5 5-1.2C17 7 12 7 12 7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="tc-tx"><b>Mom’s gift</b><em>Order by Thursday</em></span><i class="tc-tk"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="tc" data-x="0.19" data-y="0.03" data-r="7" style="--c:#22C55E"><span class="tc-ic"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M7.5 3.5c1.6 0 2.6 1 4.5 1s2.9-1 4.5-1c2.3 0 3.8 2 3.8 4.6 0 2.6-1.3 4.1-1.8 6.4-.5 2.6-.8 6.5-2.6 6.5-1.6 0-1.6-4.6-3.9-4.6s-2.3 4.6-3.9 4.6c-1.8 0-2.1-3.9-2.6-6.5-.5-2.3-1.8-3.8-1.8-6.4 0-2.6 1.5-4.6 3.8-4.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="tc-tx"><b>Dentist</b><em>Call back · Dr. Patel</em></span><i class="tc-tk"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="tc" data-x="-0.12" data-y="-0.1" data-r="5" style="--c:#FF8400"><span class="tc-ic"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5v-9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="tc-tx"><b>Return jacket</b><em>Window closes Friday</em></span><i class="tc-tk"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="tc" data-x="0.12" data-y="-0.12" data-r="-6" style="--c:#7A5CFF"><span class="tc-ic"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M7 3v7a2 2 0 0 0 2 2v9M5 3v5M9 3v5M17 3c-1.7 0-3 2.2-3 5.5 0 2 1 3.5 3 3.5v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="tc-tx"><b>Dinner for 4</b><em>Saturday · 8 PM</em></span><i class="tc-tk"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="tc" data-x="-0.02" data-y="-0.03" data-r="-3" style="--c:#EAB308"><span class="tc-ic"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M13.5 2 5 13.2h5.6L9.8 22 19 10.4h-5.8L13.5 2Z" fill="currentColor"/></svg></span><span class="tc-tx"><b>Electric bill</b><em>$142.18 · due tomorrow</em></span><i class="tc-tk"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div><div class="tc" data-x="0.03" data-y="-0.19" data-r="4" style="--c:#51A2FF"><span class="tc-ic"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M21 15.5v-1.7l-7.6-4.8V4.4a1.4 1.4 0 0 0-2.8 0V9L3 13.8v1.7l7.6-2.4v4.7l-2 1.5V21l3.4-1 3.4 1v-1.7l-2-1.5v-4.7L21 15.5Z" fill="currentColor"/></svg></span><span class="tc-tx"><b>Flight canceled</b><em>JFK → MAD · rebook</em></span><i class="tc-tk"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></i></div></div>
+      <div class="ft-cleared" id="ftCleared">All clear ✓</div>
+    </div>
     <div class="ft-crowd" id="ftCrowdBox" aria-hidden="true">
-      <video class="ft-crowd-video" id="ftCrowdVideo" muted autoplay playsinline webkit-playsinline loop preload="auto" poster="crowd-poster.jpg" disablepictureinpicture disableremoteplayback><source src="crowd.mp4" type="video/mp4"><source src="crowd.webm" type="video/webm"></video>
+      <video class="ft-crowd-video" id="ftCrowdVideo" muted playsinline webkit-playsinline loop preload="none" poster="crowd-poster.jpg" disablepictureinpicture disableremoteplayback><source src="crowd.mp4" type="video/mp4"><source src="crowd.webm" type="video/webm"></video>
       <div class="ft-crowd-track" id="ftCrowd"><img alt=""><img alt=""><img alt=""></div>
     </div>
     <div class="x2f-copy" id="x2fCopy">
@@ -2229,6 +2262,7 @@ html.xp2-on .xp2{touch-action:none}
     document.addEventListener('visibilitychange', () => { if (document.hidden && !v.paused) v.pause(); });
   })();
   function crowdVideoTick(force){
+    return;   // the footer uses the plate now
     const v = CROWD.v; if (!v) return;
     const on = $('#x2Footer').classList.contains('on') && !document.hidden;
     if (!on){ if (!v.paused) v.pause(); return; }
@@ -2320,6 +2354,55 @@ html.xp2-on .xp2{touch-action:none}
     if (mouth) mouth.setAttribute('transform', `translate(${(FTE.x * 16 * m).toFixed(1)} ${(FTE.y * 12 * m).toFixed(1)})`);
   }
 
+
+  // ---- Footer: the plate empties. Each task gets a tick, lifts off and flies away; then the plate refills ----
+  const PLATE = {tl:null};
+  function buildPlate(){
+    const plate = $('#ftPlate'); if (!plate || !hasGsap) return;
+    const cards = [...plate.querySelectorAll('.tc')];
+    const W = () => plate.getBoundingClientRect().width;
+    const base = c => ({x:+c.dataset.x * W(), y:+c.dataset.y * W(), r:+c.dataset.r});
+    const place = () => cards.forEach(c => { const b = base(c); gsap.set(c, {x:b.x, y:b.y, rotation:b.r, opacity:1, scale:1}); gsap.set(c.querySelector('.tc-tk'), {scale:0}); });
+    place(); addEventListener('resize', () => { if (PLATE.tl){ const p = PLATE.tl.progress(); PLATE.tl.kill(); PLATE.tl = null; place(); makeLoop(); PLATE.tl.progress(p); if ($('#x2Footer').classList.contains('on')) PLATE.tl.play(); } });
+    function makeLoop(){
+      const tl = gsap.timeline({paused:true, repeat:-1, repeatDelay:.6});
+      const order = cards.slice().reverse();   // top of the pile first
+      let t = .8;
+      order.forEach((c, k) => {
+        const tk = c.querySelector('.tc-tk'), side = k % 2 ? 1 : -1;
+        tl.to(tk, {scale:1, duration:.35, ease:'back.out(3)'}, t)
+          .to(c, {y:() => base(c).y - W() * .05, scale:1.05, rotation:() => base(c).r * .3, duration:.28, ease:'power2.out'}, t + .3)
+          // a curved throw off the plate: up and away to one side, spinning as it goes
+          .to(c, {keyframes:[
+              {x:() => base(c).x + side * W() * .18, y:() => base(c).y - W() * .30, rotation:() => base(c).r + side * 14, duration:.32, ease:'power1.out'},
+              {x:() => base(c).x + side * W() * .55, y:() => base(c).y - W() * .52, rotation:() => base(c).r + side * 32, scale:.8, duration:.34, ease:'power1.in'},
+              {x:() => base(c).x + side * W() * .95, y:() => base(c).y - W() * .58, rotation:() => base(c).r + side * 50, scale:.6, opacity:0, duration:.3, ease:'power1.in'}]}, t + .6);
+        t += .72;
+      });
+      // the plate is clear: a shine runs across it and a little note appears
+      tl.fromTo('#ftPlate .pl-shine', {attr:{x:-300}}, {attr:{x:1200}, duration:1, ease:'power2.inOut'}, t + .1)
+        .fromTo('#ftCleared', {opacity:0, y:10}, {opacity:1, y:0, duration:.4, ease:'power2.out'}, t + .2)
+        .to('#ftCleared', {opacity:0, duration:.35}, t + 1.8);
+      t += 2.1;
+      // and life fills it back up: tasks drop in one by one
+      cards.forEach((c, k) => {
+        tl.set(c.querySelector('.tc-tk'), {scale:0}, t)
+          .fromTo(c, {x:() => base(c).x, y:() => base(c).y - W() * .5, rotation:() => base(c).r - 10, scale:1, opacity:0},
+                     {y:() => base(c).y, rotation:() => base(c).r, opacity:1, duration:.7, ease:'bounce.out', immediateRender:false}, t + k * .16);
+      });
+      tl.to({}, {duration:1.2}, t + cards.length * .16 + .7);
+      PLATE.tl = tl;
+    }
+    makeLoop();
+  }
+  buildPlate();
+  function plateTick(){
+    if (!PLATE.tl) return;
+    const on = $('#x2Footer').classList.contains('on') && !reduce;
+    if (on && PLATE.tl.paused()) PLATE.tl.play();
+    else if (!on && !PLATE.tl.paused()) PLATE.tl.pause();
+  }
+
   // ---- Hair and clothes in the wind ----
   // The artwork is one flat drawing, so for each person we copy just the shapes around their hair and
   // clothing, ripple that copy with a turbulence filter, and fade it into the original with a soft mask.
@@ -2392,6 +2475,7 @@ html.xp2-on .xp2{touch-action:none}
     footerOrbitTick(T);
     footerEyesTick();
     crowdVideoTick(false);
+    plateTick();
     // footer Prael breathes and leans in the wind
     // the dots in each "Hey Prael" bubble bounce
     document.querySelectorAll('#x2Scenes .dots circle').forEach((c, i) => {
@@ -2460,7 +2544,7 @@ html.xp2-on .xp2{touch-action:none}
       // hero and footer sit on the lilac-to-peach sky; the street and chats on white
       const sky = k === 0 || k === (x2.stops || []).length - 1;
       const last = k === (x2.stops || []).length - 1;
-      const top = last ? '#FFFFFF' : sky ? '#ECCFFF' : '#F9F8F4', bottom = last ? '#B2B1C7' : sky ? '#FFC281' : '#FFFFFF';
+      const top = last ? '#FFFFFF' : sky ? '#ECCFFF' : '#F9F8F4', bottom = last ? '#FFFFFF' : sky ? '#FFC281' : '#FFFFFF';
       const m = document.getElementById('themeColor'); if (m) m.setAttribute('content', top);
       document.documentElement.style.backgroundColor = bottom; document.body.style.backgroundColor = bottom;
     },
