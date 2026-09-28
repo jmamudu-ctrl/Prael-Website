@@ -156,6 +156,18 @@ html.xp2-on .xp2{touch-action:none}
 @media (prefers-reduced-motion: reduce){.tc-sh::before,.p-holo{animation:none}}
 .ft-cleared{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-weight:600;font-size:max(15px,calc(24 * var(--u)));letter-spacing:-.03em;color:#16A34A;opacity:0;white-space:nowrap}
 @media (max-aspect-ratio: 9/10){ .ft-plate{width:96vw} .tc{--w:40vw} .tc-rcpt,.tc-gift{--w:34vw} }
+.ft-wall{position:absolute;left:0;top:0;width:0;height:0;pointer-events:none;perspective:1400px;z-index:1}
+.stk{position:absolute;left:0;top:0;padding:0;margin:0;border:0;background:none;cursor:pointer;pointer-events:auto;transform-style:preserve-3d;will-change:transform;-webkit-tap-highlight-color:transparent}
+.stk:focus-visible{outline:3px solid #2F0D68;outline-offset:6px;border-radius:14px}
+/* the sticker itself: the task card with a white die-cut margin, stuck flat to the wall */
+.stk-in.tc{position:relative;display:block;margin:0;width:var(--sw);box-shadow:0 0 0 6px #fff,0 1px 0 6px rgba(16,24,40,.06),0 16px 26px -12px rgba(16,24,40,.35);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.stk-in.tc-rcpt{-webkit-mask:none;mask:none;border-radius:4px}
+.stk-in.tc-gift{clip-path:none;border-radius:10px}
+.stk-back{position:absolute;inset:-6px;border-radius:16px;background:linear-gradient(135deg,#F5F5F2,#E4E4DF);transform:rotateY(180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.stk-curl{position:absolute;inset:-6px;border-radius:16px;pointer-events:none;opacity:0;background:linear-gradient(115deg,rgba(0,0,0,.25),rgba(0,0,0,0) 45%,rgba(255,255,255,.6) 60%,rgba(0,0,0,0) 75%)}
+.stk:hover .stk-in{filter:brightness(1.03)}
+.ft-hint{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 18px);font-size:max(12px,calc(15 * var(--u)));color:#667085;letter-spacing:-.01em;opacity:0;transition:opacity .6s;pointer-events:none;white-space:nowrap}
+.x2-footer.idle .ft-hint{opacity:1}
 .ft-crowd{position:absolute;left:0;right:0;bottom:0;height:min(76vh,calc(100vw * .56));overflow:hidden;pointer-events:none;
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 26%);mask-image:linear-gradient(180deg,transparent 0,#000 26%)}
 .ft-crowd-video{position:absolute;left:0;bottom:-8vw;width:100%;height:auto;background:transparent}
@@ -172,7 +184,7 @@ html.xp2-on .xp2{touch-action:none}
 @media (max-aspect-ratio: 9/10){ .ft-crowd{height:56vh} .ft-crowd-video{inset:0;bottom:0;height:100%;object-fit:cover;object-position:50% 100%} }
 @media (prefers-reduced-motion: reduce){ .x2-footer.on .ft-crowd-track,.x2-footer.on .ft-crowd-track img{animation:none} }
 /* Prael and his curl no longer sit in the footer */
-.x2-footer .x2f-star{display:none !important}
+.x2-footer .ft-plate{display:none !important}   /* the sticker wall replaces the plate */
 .x2f-star{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;will-change:transform;overflow:visible;transform-origin:76% 96%}
 .x2-footer.on.idle .x2f-star{animation:ftBreathe 4.6s ease-in-out infinite}
 @keyframes ftBreathe{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}50%{transform:translateY(-.6%) rotate(.7deg) scale(1.006)}}
@@ -667,6 +679,8 @@ html.xp2-on .xp2{touch-action:none}
 </g></g></g>
     </svg>
     <div class="ft-orbit ft-front" id="ftOrbitFront" aria-hidden="true"></div>
+    <div class="ft-wall" id="ftWall" aria-label="Tasks on the wall. Tap one to peel it off."><button type="button" class="stk" data-fx="-0.34" data-fy="-0.17" data-r="-8" aria-label="Peel off this task"><span class="stk-in tc tc-pass"><div class="p-top"><span>BOARDING PASS</span><span>14C</span></div><div class="p-route">JFK<i>✈</i>MAD</div><div class="p-meta">Canceled · rebook me</div><i class="p-holo"></i><i class="tc-sh"></i></span><span class="stk-back"></span><span class="stk-curl"></span></button><button type="button" class="stk" data-fx="0.0" data-fy="-0.21" data-r="5" aria-label="Peel off this task"><span class="stk-in tc tc-rcpt"><b>CITY POWER &amp; LIGHT</b><div class="r-l"><span>Electric</span><span>$142.18</span></div><div class="r-l"><span>DUE</span><span>TOMORROW</span></div><div class="r-bars"><i style="width:1px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:2px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:1px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:2px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:1px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:2px"></i></div><i class="tc-sh"></i></span><span class="stk-back"></span><span class="stk-curl"></span></button><button type="button" class="stk" data-fx="0.34" data-fy="-0.15" data-r="-4" aria-label="Peel off this task"><span class="stk-in tc tc-dine"><em>RESERVATION</em><b>Carbone</b><span>Sat · 8 PM · party of 4</span><i class="tc-sh"></i></span><span class="stk-back"></span><span class="stk-curl"></span></button><button type="button" class="stk" data-fx="-0.31" data-fy="0.13" data-r="6" aria-label="Peel off this task"><span class="stk-in tc tc-ups"><div class="u-h"><b>UPS</b><span>RETURN</span></div><div class="u-b">Jacket · refund $86</div><div class="u-bars"><i style="width:1px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:2px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:1px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:2px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:1px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i><i style="width:2px"></i><i style="width:2px"></i><i style="width:1px"></i><i style="width:3px"></i><i style="width:1px"></i></div><i class="tc-sh"></i></span><span class="stk-back"></span><span class="stk-curl"></span></button><button type="button" class="stk" data-fx="0.02" data-fy="0.1" data-r="-5" aria-label="Peel off this task"><span class="stk-in tc tc-cal"><div class="c-date"><em>MON</em><b>28</b></div><div class="c-tx"><b>Dentist</b><span>11:00 · Dr. Patel</span></div><i class="tc-sh"></i></span><span class="stk-back"></span><span class="stk-curl"></span></button><button type="button" class="stk" data-fx="0.33" data-fy="0.15" data-r="8" aria-label="Peel off this task"><span class="stk-in tc tc-gift"><i class="g-hole"></i><i class="g-ribbon"></i><b>Mom’s gift</b><span>order by Thursday</span><i class="tc-sh"></i></span><span class="stk-back"></span><span class="stk-curl"></span></button></div>
+    
 <div class="ft-plate" id="ftPlate" aria-hidden="true">
       <svg class="ft-dish" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMax meet">
         <defs>
@@ -690,6 +704,7 @@ html.xp2-on .xp2{touch-action:none}
       <video class="ft-crowd-video" id="ftCrowdVideo" muted playsinline webkit-playsinline loop preload="none" poster="crowd-poster.jpg" disablepictureinpicture disableremoteplayback><source src="crowd.mp4" type="video/mp4"><source src="crowd.webm" type="video/webm"></video>
       <div class="ft-crowd-track" id="ftCrowd"><img alt=""><img alt=""><img alt=""></div>
     </div>
+    <p class="ft-hint">Tap a task to peel it off</p>
     <div class="x2f-copy" id="x2fCopy">
       <h2 id="x2fTitle">A little less on your plate</h2>
       <p id="x2fSub">From the things you keep putting off to the things that just came up, your personal assistant is one message away on WhatsApp, iMessage and Telegram.</p>
@@ -1942,7 +1957,7 @@ html.xp2-on .xp2{touch-action:none}
   }
   // footer Prael: final pose is the hero star scaled 1.36 and moved, as in the Figma Footer frame
   // Footer v1 pose (k 1.36) re-scaled to the smaller Footer v2 frame, centred where the v2 frame puts him
-  const FT_V3 = {k:1.029, x:968, y:1150};
+  const FT_V3 = {k:.46, x:960, y:880};   // centred under the sticker wall
   let ftCenter = {x:224.17 + 1369.84 / 2 + 497, y:235.43 + 1321.61 / 2};
   function placeFooterStar(v){
     const star = $('#ftStar');
@@ -1950,12 +1965,12 @@ html.xp2-on .xp2{touch-action:none}
     const c = x2.cam, w = W2 / c.s, h = H2 / c.s, vx = c.x - w / 2, vy = c.y - h / 2;
     const sx = (PR.x - vx) * c.s, sy = (PR.y - vy) * c.s;
     // phones: a smaller Prael, bottom centre, under the copy
-    const portrait = x2Portrait(), K = portrait ? .62 : FT_V3.k;
+    const portrait = x2Portrait(), K = portrait ? .33 : FT_V3.k;
     $('#x2Footer .x2f-art').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
     $('#x2Footer .x2f-star').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
     const k0 = .032 * c.s * K;
     const e = v, k = k0 + (K - k0) * e;
-    const endX = portrait ? 960 : FT_V3.x, endY = portrait ? 1010 : FT_V3.y;
+    const endX = portrait ? 960 : FT_V3.x, endY = portrait ? 800 : FT_V3.y;
     const x = sx + (endX - sx) * e, y = sy + (endY - sy) * e, rot = (1 - e) * -12;
     star.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(2)}) scale(${k.toFixed(4)}) translate(${(-ftCenter.x).toFixed(1)} ${(-ftCenter.y).toFixed(1)})`);
     $('#x2Footer').classList.toggle('idle', v >= .999);
@@ -2445,6 +2460,64 @@ html.xp2-on .xp2{touch-action:none}
     else if (!on && !PLATE.tl.paused()) PLATE.tl.pause();
   }
 
+
+  // ---- Footer: a wall of task stickers over Prael. They peel off one by one (or on tap) to reveal his smile ----
+  const WALL = {laid:false, stuck:[], timer:null, busy:false};
+  function layWall(){
+    const p = $('#ftStarPath'), wall = $('#ftWall'); if (!p || !wall) return false;
+    const r = p.getBoundingClientRect(); if (!r.width) return false;
+    const W = r.width, cx = r.left + W / 2, cy = r.top + r.height * .52;
+    wall.style.left = cx + 'px'; wall.style.top = cy + 'px';
+    wall.querySelectorAll('.stk').forEach(s => {
+      const sw = W * .36; s.style.setProperty('--sw', sw + 'px');
+      s.dataset.bx = +s.dataset.fx * W; s.dataset.by = +s.dataset.fy * W;
+      if (!s.dataset.gone) gsap.set(s, {x:+s.dataset.bx - sw / 2, y:+s.dataset.by - sw * .22, rotation:+s.dataset.r, rotationX:0, rotationY:0, z:0, opacity:1, scale:1});
+    });
+    WALL.laid = true; return true;
+  }
+  addEventListener('resize', () => { if (WALL.laid) setTimeout(layWall, 250); });
+  function peel(s, fast){
+    if (!s || s.dataset.gone) return; s.dataset.gone = '1';
+    const side = (+s.dataset.fx >= 0 ? 1 : -1), curl = s.querySelector('.stk-curl');
+    const tl = gsap.timeline();
+    // lift a corner, bend back to show the paper backing, then flick off the wall
+    tl.set(s, {transformOrigin:side > 0 ? '0% 0%' : '100% 0%', zIndex:5})
+      .to(curl, {opacity:1, duration:.25}, 0)
+      .to(s, {rotationX:-28, rotationY:side * -38, z:40, duration:fast ? .25 : .45, ease:'power2.out'}, 0)
+      .to(s, {rotationX:-70, rotationY:side * -120, z:120, duration:fast ? .3 : .5, ease:'power2.in'})
+      .to(s, {x:'+=' + side * innerWidth * .6, y:'-=' + innerHeight * .25, rotation:'+=' + side * 40, opacity:0, duration:.55, ease:'power2.in'});
+    if (!$('#ftWall').querySelector('.stk:not([data-gone])')) setTimeout(praelCheer, fast ? 500 : 900);
+  }
+  function praelCheer(){
+    // everything's off his plate: he gives a happy little bounce
+    const svg = $('#x2fStarSvg'); if (!svg || reduce) return;
+    gsap.fromTo(svg, {y:0}, {y:-18, duration:.25, yoyo:true, repeat:3, ease:'power1.out'});
+  }
+  function restick(){
+    const all = [...$('#ftWall').querySelectorAll('.stk')];
+    all.forEach((s, k) => {
+      delete s.dataset.gone;
+      const sw = parseFloat(s.style.getPropertyValue('--sw')) || 200;
+      gsap.fromTo(s, {x:+s.dataset.bx - sw / 2, y:+s.dataset.by - sw * .22 - 30, rotation:+s.dataset.r - 6, rotationX:0, rotationY:0, z:0, scale:1.25, opacity:0},
+        {y:+s.dataset.by - sw * .22, rotation:+s.dataset.r, scale:1, opacity:1, duration:.45, delay:k * .12, ease:'back.out(2.4)', transformOrigin:'50% 50%', zIndex:0});
+      gsap.set(s.querySelector('.stk-curl'), {opacity:0, delay:k * .12});
+    });
+  }
+  function wallTick(){
+    const on = $('#x2Footer').classList.contains('idle');
+    if (!on){ clearTimeout(WALL.timer); WALL.timer = null; return; }
+    if (!WALL.laid && !layWall()) return;
+    if (WALL.timer || reduce) return;
+    // the automatic sequence: peel the next sticker every so often; when the wall is clear, pause, then stick them back
+    const step = () => {
+      const next = $('#ftWall').querySelector('.stk:not([data-gone])');
+      if (next){ peel(next); WALL.timer = setTimeout(step, 1300); }
+      else { WALL.timer = setTimeout(() => { restick(); WALL.timer = setTimeout(step, 2600); }, 3200); }
+    };
+    WALL.timer = setTimeout(step, 1600);
+  }
+  document.querySelectorAll('#ftWall .stk').forEach(s => s.addEventListener('click', e => { e.stopPropagation(); peel(s, true); }));
+
   // ---- Hair and clothes in the wind ----
   // The artwork is one flat drawing, so for each person we copy just the shapes around their hair and
   // clothing, ripple that copy with a turbulence filter, and fade it into the original with a soft mask.
@@ -2518,6 +2591,7 @@ html.xp2-on .xp2{touch-action:none}
     footerEyesTick();
     crowdVideoTick(false);
     plateTick();
+    wallTick();
     // footer Prael breathes and leans in the wind
     // the dots in each "Hey Prael" bubble bounce
     document.querySelectorAll('#x2Scenes .dots circle').forEach((c, i) => {
@@ -2621,7 +2695,7 @@ html.xp2-on .xp2{touch-action:none}
     addEventListener('touchstart', e => { if (on()){ ty = e.touches[0].clientY; touched(); } }, {passive:true});
     addEventListener('touchmove', e => {
       if (!on()) return;
-      if (!e.target.closest('input, textarea, button, a')) e.preventDefault();
+      if (!e.target.closest('input, textarea, button, a, .stk')) e.preventDefault();
       if (ty === null) return; const dy = ty - e.touches[0].clientY;
       if (Math.abs(dy) > 28){ ty = null; x2Step.go(Math.sign(dy)); }
     }, {passive:false});
