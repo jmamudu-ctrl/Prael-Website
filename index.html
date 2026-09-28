@@ -202,7 +202,7 @@ html.xp2-on .xp2{touch-action:none}
 .x2-footer .ft-plate{display:none !important}   /* the sticker wall replaces the plate */
 .x2f-star{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;will-change:transform;overflow:visible;transform-origin:76% 96%}
 .x2-footer.on.idle .x2f-star{animation:ftBreathe 4.6s ease-in-out infinite}
-@keyframes ftBreathe{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}50%{transform:translateY(-.6%) rotate(.7deg) scale(1.006)}}
+@keyframes ftBreathe{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}50%{transform:translateY(-1.6%) rotate(.8deg) scale(1.008)}}
 .x2-footer{overflow:hidden}
 @media (prefers-reduced-motion: reduce){.x2-footer.on.idle .x2f-star{animation:none}}
 .x2f-copy{position:absolute;left:50%;top:calc(50% - 345 * var(--u));transform:translateX(-50%);align-items:center;text-align:center;width:min(calc(100% - 40px),max(340px,calc(773 * var(--u))));display:flex;flex-direction:column;gap:calc(22 * var(--u));color:#3B2308}
@@ -1972,7 +1972,7 @@ html.xp2-on .xp2{touch-action:none}
   }
   // footer Prael: final pose is the hero star scaled 1.36 and moved, as in the Figma Footer frame
   // Footer v1 pose (k 1.36) re-scaled to the smaller Footer v2 frame, centred where the v2 frame puts him
-  const FT_V3 = {k:.46, x:960, y:880};   // centred under the sticker wall
+  const FT_V3 = {k:.38, x:960, y:770};   // centred under the sticker wall
   let ftCenter = {x:224.17 + 1369.84 / 2 + 497, y:235.43 + 1321.61 / 2};
   function placeFooterStar(v){
     const star = $('#ftStar');
@@ -1980,12 +1980,12 @@ html.xp2-on .xp2{touch-action:none}
     const c = x2.cam, w = W2 / c.s, h = H2 / c.s, vx = c.x - w / 2, vy = c.y - h / 2;
     const sx = (PR.x - vx) * c.s, sy = (PR.y - vy) * c.s;
     // phones: a smaller Prael, bottom centre, under the copy
-    const portrait = x2Portrait(), K = portrait ? .33 : FT_V3.k;
+    const portrait = x2Portrait(), K = portrait ? .3 : FT_V3.k;
     $('#x2Footer .x2f-art').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
     $('#x2Footer .x2f-star').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
     const k0 = .032 * c.s * K;
     const e = v, k = k0 + (K - k0) * e;
-    const endX = portrait ? 960 : FT_V3.x, endY = portrait ? 800 : FT_V3.y;
+    const endX = portrait ? 960 : FT_V3.x, endY = portrait ? 780 : FT_V3.y;
     const x = sx + (endX - sx) * e, y = sy + (endY - sy) * e, rot = (1 - e) * -12;
     star.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(2)}) scale(${k.toFixed(4)}) translate(${(-ftCenter.x).toFixed(1)} ${(-ftCenter.y).toFixed(1)})`);
     $('#x2Footer').classList.toggle('idle', v >= .999);
