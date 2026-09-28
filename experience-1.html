@@ -94,7 +94,7 @@ html.xp2-on .xp2{touch-action:none}
 .x2f-art g:nth-of-type(4) .ftCloud > path{animation-duration:16s;animation-delay:-9s}
 @keyframes ftDrift{from{transform:translateX(-28px)}to{transform:translateX(34px)}}
 @media (prefers-reduced-motion: reduce){.x2f-art .ftCloud > path{animation:none}}
-.ft-orbit{position:absolute;inset:0;pointer-events:none;perspective:1600px;perspective-origin:74% 52%;opacity:0;transition:opacity 1s ease}
+.ft-orbit{display:none !important;position:absolute;inset:0;pointer-events:none;perspective:1600px;perspective-origin:74% 52%;opacity:0;transition:opacity 1s ease}
 .x2-footer.idle .ft-orbit{opacity:1}
 .ft-p{position:absolute;left:0;top:0;transform-style:preserve-3d;will-change:transform;pointer-events:auto;cursor:pointer}
 .ft-p .fx{position:absolute;inset:0;transform-style:preserve-3d}
@@ -277,19 +277,37 @@ html.xp2-on .xp2{touch-action:none}
 @keyframes rcFoil{0%{transform:translateX(-100%)}50%,100%{transform:translateX(100%)}}
 .rc-kicker{margin:0;font:600 max(10px,calc(12 * var(--u)))/1 "IBM Plex Mono",monospace;letter-spacing:.24em;color:#D9B26C}
 .rc-venue{margin:calc(8 * var(--u)) 0 0;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:max(26px,calc(46 * var(--u)));line-height:1.05;background:linear-gradient(180deg,#FFE9B8,#D9A94F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rc-addr{margin:4px 0 0;font-size:max(10px,calc(13 * var(--u)));letter-spacing:.06em;color:#CDB894}
 .rc-rule{display:flex;align-items:center;gap:10px;margin:calc(10 * var(--u)) auto;width:70%;color:#D9B26C}
 .rc-rule::before,.rc-rule::after{content:"";flex:1;border-top:1px solid rgba(217,178,108,.5)}
 .rc-dine{display:flex;justify-content:center;gap:calc(34 * var(--u));font-weight:600;font-size:max(13px,calc(19 * var(--u)))}
 .rc-dine em{color:#B8946A}
 .rc-note{margin:calc(12 * var(--u)) 0 0;font-size:max(11px,calc(14 * var(--u)));color:#CDB894}
 
-.rc-receipt{position:relative;overflow:hidden;width:calc(420 * var(--u));max-width:100%;background:#FFFEFA;color:#23201B;font-family:"IBM Plex Mono",monospace;padding:calc(18 * var(--u)) calc(22 * var(--u)) calc(26 * var(--u));box-shadow:0 14px 30px -18px rgba(0,0,0,.4);transform:rotate(1.2deg);
+.rc-receipt{position:relative;overflow:hidden;width:calc(400 * var(--u));min-width:250px;max-width:100%;color:#2B2823;font-family:"IBM Plex Mono",monospace;font-weight:500;padding:calc(18 * var(--u)) calc(22 * var(--u)) calc(24 * var(--u));transform:rotate(1.4deg);
+  /* thermal paper: warm off-white, fine grain, a soft fold across the middle and curl shading at the edges */
+  background:
+    linear-gradient(180deg,rgba(0,0,0,0) 0 44%,rgba(60,50,30,.07) 46%,rgba(255,255,255,.55) 47%,rgba(0,0,0,0) 50%),
+    linear-gradient(90deg,rgba(80,70,50,.08),rgba(0,0,0,0) 7% 93%,rgba(80,70,50,.08)),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .2  0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    #FBF9F2;
+  filter:drop-shadow(0 16px 18px rgba(40,30,15,.22)) drop-shadow(0 2px 2px rgba(40,30,15,.12));
+  -webkit-mask:radial-gradient(circle at 7px 0,transparent 6px,#000 6.5px) top left/14px 51% repeat-x,radial-gradient(circle at 7px 100%,transparent 6px,#000 6.5px) bottom left/14px 51% repeat-x;
+  mask:radial-gradient(circle at 7px 0,transparent 6px,#000 6.5px) top left/14px 51% repeat-x,radial-gradient(circle at 7px 100%,transparent 6px,#000 6.5px) bottom left/14px 51% repeat-x}
+.rc-scene:has(.rc-receipt){transform:scale(.72);transform-origin:0 0;margin-bottom:calc(-120 * var(--u))}
+@media (max-aspect-ratio: 9/10){ .rc-scene:has(.rc-receipt){transform-origin:50% 0} }
+.rc-rlogo{display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.14em;font-size:max(12px,calc(16 * var(--u)))}
+.rc-rlogo b{font-weight:600}
+.rc-rdash{border-top:1.5px dashed rgba(43,40,35,.45);margin:calc(6 * var(--u)) 0}
+.rc-rbars{display:flex;justify-content:center;gap:2px;height:calc(30 * var(--u));min-height:20px;margin:calc(12 * var(--u)) 0 calc(6 * var(--u));opacity:.88}
+.rc-rbars i{display:block;background:#2B2823}
+.rc-receipt .rc-rline,.rc-receipt .rc-rsub{text-shadow:0 0 .4px rgba(43,40,35,.6)}
   -webkit-mask:linear-gradient(#000,#000) top/100% calc(100% - 10px) no-repeat,radial-gradient(circle at 8px 0,transparent 7px,#000 7.5px) bottom left/16px 10px repeat-x;mask:linear-gradient(#000,#000) top/100% calc(100% - 10px) no-repeat,radial-gradient(circle at 8px 0,transparent 7px,#000 7.5px) bottom left/16px 10px repeat-x}
-.rc-rhead{margin:0;text-align:center;font-weight:600;letter-spacing:.14em;font-size:max(12px,calc(16 * var(--u)))}
-.rc-rsub{margin:4px 0 calc(10 * var(--u));text-align:center;color:#8A8577;font-size:max(10px,calc(12 * var(--u)))}
-.rc-rline{display:flex;justify-content:space-between;font-size:max(11px,calc(14 * var(--u)));padding:4px 0;border-bottom:1px dashed #D8D3C4}
-.rc-rtotal{font-weight:600;font-size:max(13px,calc(18 * var(--u)));border-bottom:0;padding-top:8px}
-.rc-paid{position:absolute;right:calc(18 * var(--u));top:calc(40 * var(--u));font:800 max(22px,calc(38 * var(--u)))/1 var(--font);letter-spacing:.06em;color:#1E8A5A;border:4px solid #1E8A5A;border-radius:10px;padding:4px 12px;transform:rotate(-14deg) scale(1.8);opacity:0;mix-blend-mode:multiply}
+
+.rc-rsub{margin:6px 0 0;text-align:center;color:#6F6A5E;font-size:max(9px,calc(11.5 * var(--u)));line-height:1.45}
+.rc-rline{display:flex;justify-content:space-between;gap:10px;font-size:max(10px,calc(13 * var(--u)));padding:2px 0;opacity:.92}
+.rc-rtotal{font-weight:600;font-size:max(13px,calc(18 * var(--u)));opacity:1;padding:4px 0}
+.rc-paid{position:absolute;left:calc(150 * var(--u));top:calc(176 * var(--u));font:800 max(22px,calc(38 * var(--u)))/1 var(--font);letter-spacing:.06em;color:#1E8A5A;border:4px solid #1E8A5A;border-radius:10px;padding:4px 12px;transform:rotate(-14deg) scale(1.8);opacity:0;mix-blend-mode:multiply}
 .x2res.in .rc-paid{animation:rcPaid .45s cubic-bezier(.2,1.6,.4,1) .45s forwards}
 @keyframes rcPaid{to{transform:rotate(-14deg) scale(1);opacity:.85}}
 
@@ -1670,8 +1688,8 @@ html.xp2-on .xp2{touch-action:none}
       result:{kind:'label', rows:[['Pickup', 'Thu · 9:00–12:00 PM'], ['Carrier', 'UPS · label sent'], ['Refund', '$86.00 · 3–5 days']]}},
     {id:'umbrella', focus:{x:1088, y:505}, head:{x:1090, y:496},
       icon:'dinner', done:'calcheck', title:"Mom's birthday dinner", meta:['Saturday', '8:00 PM', 'Party of 4'],
-      ask:'Book a table for four on Saturday', reply:"Booked! Corner table at Rosa's, 8 PM. It's on your calendar.",
-      result:{kind:'dinner', rows:[["Rosa's Trattoria", 'Sat · 8:00 PM'], ['Table', 'Corner · party of 4'], ['Calendar', 'Added · invite sent']]}},
+      ask:'Book a table for four on Saturday', reply:"Booked! Table for 4 at Carbone, 8 PM. It's on your calendar.",
+      result:{kind:'dinner', rows:[['Carbone', 'Sat · 8:00 PM'], ['Table', 'Party of 4'], ['Calendar', 'Added · invite sent']]}},
     {id:'bill', focus:{x:722, y:560}, head:{x:722, y:552},
       icon:'bolt', done:'receipt', title:'Electric bill due tomorrow', meta:['City Power & Light', '$142.18'],
       ask:'Pay my electric bill', reply:'Pay $142.18 to City Power & Light?', approve:true, reply2:'Paid! The receipt is in your inbox.',
@@ -1734,22 +1752,30 @@ html.xp2-on .xp2{touch-action:none}
       <div class="rc-dinner">
         <div class="rc-foil"></div>
         <p class="rc-kicker">RESERVATION CONFIRMED</p>
-        <p class="rc-venue">Rosa’s Trattoria</p>
+        <p class="rc-venue">Carbone</p>
+        <p class="rc-addr">181 Thompson St · Greenwich Village, New York</p>
         <div class="rc-rule"><span>✦</span></div>
-        <div class="rc-dine"><span><em>Saturday</em>8:00 PM</span><span><em>Party</em>4 guests</span><span><em>Table</em>Corner</span></div>
+        <div class="rc-dine"><span><em>Saturday</em>8:00 PM</span><span><em>Party</em>4 guests</span><span><em>Conf.</em>#CB-4471</span></div>
         <p class="rc-note">Happy birthday, Mom 🎂 · added to your calendar</p>
         <div class="rc-shine"></div>
       </div>`;
     if (r.kind === 'receipt') return `
       <div class="rc-receipt">
-        <p class="rc-rhead">CITY POWER &amp; LIGHT</p>
-        <p class="rc-rsub">Electric · Acct ••4417 · Oct</p>
-        <div class="rc-rline"><span>Usage 612 kWh</span><span>$128.40</span></div>
-        <div class="rc-rline"><span>Delivery &amp; fees</span><span>$13.78</span></div>
+        <div class="rc-rlogo"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M13.5 2 5 13.2h5.6L9.8 22 19 10.4h-5.8L13.5 2Z" fill="#2B2823"/></svg><b>CITY POWER &amp; LIGHT</b></div>
+        <p class="rc-rsub">4 Irving Pl · New York, NY 10003</p>
+        <div class="rc-rdash"></div>
+        <div class="rc-rline"><span>DATE</span><span>09/27/26 · 08:41 PM</span></div>
+        <div class="rc-rline"><span>ACCT •••• 4417</span><span>SEP 01 – 30</span></div>
+        <div class="rc-rdash"></div>
+        <div class="rc-rline"><span>Electricity 612 kWh</span><span>$118.26</span></div>
+        <div class="rc-rline"><span>Delivery charge</span><span>$16.14</span></div>
+        <div class="rc-rline"><span>NY sales tax</span><span>$7.78</span></div>
+        <div class="rc-rdash"></div>
         <div class="rc-rline rc-rtotal"><span>TOTAL PAID</span><span>$142.18</span></div>
-        <p class="rc-rsub">Approved by you · just now · Ref 88-2210</p>
+        <div class="rc-rline"><span>VISA •••• 2291</span><span>APPROVED</span></div>
+        <div class="rc-rbars">${BARS(44)}</div>
+        <p class="rc-rsub">*** THANK YOU · approved by you via Prael ***</p>
         <div class="rc-paid">PAID</div>
-        <div class="rc-shine"></div>
       </div>`;
     if (r.kind === 'calendar') return `
       <div class="rc-cal">
@@ -2201,6 +2227,7 @@ html.xp2-on .xp2{touch-action:none}
   }
   addEventListener('resize', () => { if (FTO.built) setTimeout(measureFooterOrbit, 300); });
   function footerOrbitTick(T){
+    return;   // the footer no longer has floating papers
     const f = $('#x2Footer');
     if (!f || !f.classList.contains('idle')){ FTO.on = false; return; }
     if (!FTO.built){ buildFooterOrbit(); return; }
