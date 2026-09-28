@@ -2423,7 +2423,7 @@ html.xp2-on .xp2{touch-action:none}
     const m = reduce ? 0 : 1;
     eyes.setAttribute('transform', `translate(${(FTE.x * 38 * m).toFixed(1)} ${(FTE.y * 30 * m).toFixed(1)})`);
     // the whole of him drifts a few pixels towards the cursor and tilts a touch, so it feels like he's paying attention
-    const pose = $('#ftPose'); if (pose) pose.setAttribute('transform', `translate(${(FTE.x * 26 * m).toFixed(1)} ${(FTE.y * 16 * m).toFixed(1)}) rotate(${(FTE.x * 2.2 * m).toFixed(2)} 900 900)`);
+    const pose = $('#ftPose'); if (pose) pose.setAttribute('transform', `translate(${(FTE.x * 80 * m).toFixed(1)} ${(FTE.y * 44 * m).toFixed(1)}) rotate(${(FTE.x * 6 * m).toFixed(2)} 900 900)`);
     if (mouth) mouth.setAttribute('transform', `translate(${(FTE.x * 16 * m).toFixed(1)} ${(FTE.y * 12 * m).toFixed(1)})`);
   }
 
