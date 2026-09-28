@@ -128,7 +128,7 @@ html.xp2-on .xp2{touch-action:none}
   .x2f-form{flex-wrap:wrap;width:auto}
   .x2f-form input{width:100%;padding:14px 22px}
 }
-.x2-apply{position:absolute;inset:0;z-index:30;background:linear-gradient(180deg,#ECCFFF 0%,#FFC281 100%);display:flex;align-items:center;justify-content:center;overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 80px) 20px calc(env(safe-area-inset-bottom,0px) + 40px);box-sizing:border-box;color:#000}
+.x2-apply{position:absolute;inset:0;z-index:30;background:#fff;display:flex;align-items:center;justify-content:center;overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 80px) 20px calc(env(safe-area-inset-bottom,0px) + 40px);box-sizing:border-box;color:#000}
 .x2-apply[hidden]{display:none}
 .x2a-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + max(18px,calc(80 * var(--u))));right:max(16px,calc(80 * var(--u)));width:48px;height:48px;border-radius:14px;border:0;background:#fff;display:grid;place-items:center;cursor:pointer}
 .x2a-close:hover{background:#fff;transform:scale(1.05)}
@@ -145,9 +145,10 @@ html.xp2-on .xp2{touch-action:none}
 .x2a-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .x2a-field{display:flex;flex-direction:column;gap:8px}
 .x2a-field span{font-weight:600;font-size:max(14px,calc(18 * var(--u)));color:#101828}
-.x2a-field input,.x2a-code{font:inherit;font-weight:500;font-size:max(16px,calc(20 * var(--u)));color:#1E2939;height:max(48px,calc(56 * var(--u)));box-sizing:border-box;padding:0 max(16px,calc(33 * var(--u)));border-radius:12px;border:0;background:rgba(255,255,255,.29);box-shadow:none;outline:none;width:100%}
+.x2a-field input,.x2a-code{font:inherit;font-weight:500;font-size:max(16px,calc(20 * var(--u)));color:#1E2939;height:max(48px,calc(56 * var(--u)));box-sizing:border-box;padding:0 max(16px,calc(33 * var(--u)));border-radius:12px;border:1px solid #E5E7EB;background:#F9FAFB;box-shadow:none;outline:none;width:100%}
 .x2a-field input::placeholder{color:#1E2939;opacity:.8}
 .x2a-field input:focus{background:#fff;box-shadow:none}
+.x2a-code:hover{background:#fff}
 
 .x2a-err{font-style:normal;font-weight:600;font-size:max(14px,calc(18 * var(--u)));color:#C10007;min-height:0;margin:0}
 .x2a-err:empty{display:none}
@@ -155,7 +156,7 @@ html.xp2-on .xp2{touch-action:none}
 .x2a-submit:hover{background:#1d2939;transform:translateY(-1px)}
 .x2a-submit[disabled]{opacity:.6;cursor:progress}
 .x2a-code{display:flex;align-items:center;justify-content:space-between;gap:12px;width:min(100%,max(300px,calc(445 * var(--u))));cursor:pointer;text-align:left}
-.x2a-code:hover{background:rgba(255,255,255,.45)}
+
 .x2a-copied{margin:10px 0 0;font-weight:600;font-size:max(14px,calc(16 * var(--u)));min-height:1.2em}
 @media (max-width:560px){ .x2a-row{grid-template-columns:1fr} }
 .x2-leaves{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
@@ -1690,7 +1691,7 @@ html.xp2-on .xp2{touch-action:none}
     function openApply(prefill){
       lastFocus = document.activeElement;
       ap.hidden = false; aForm.hidden = false; aDone.hidden = true;
-      const tc = document.getElementById('themeColor'); if (tc) tc.setAttribute('content', '#ECCFFF'); document.documentElement.style.backgroundColor = document.body.style.backgroundColor = '#FFC281';
+      const tc = document.getElementById('themeColor'); if (tc) tc.setAttribute('content', '#FFFFFF'); document.documentElement.style.backgroundColor = document.body.style.backgroundColor = '#FFFFFF';
       if (prefill) af.email.value = prefill;
       if (hasGsap) gsap.fromTo(ap, {opacity:0}, {opacity:1, duration:.35, ease:'power2.out'}), gsap.fromTo('#x2aForm > *', {opacity:0, y:18}, {opacity:1, y:0, duration:.5, stagger:.06, ease:'power3.out'});
       setTimeout(() => (af.first.value ? af.email : af.first).focus({preventScroll:true}), 60);
