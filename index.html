@@ -103,9 +103,9 @@ html.xp2-on .xp2{touch-action:none}
 .ft-p .fx img.b{transform:rotateY(180deg)}
 .ft-crowd{position:absolute;left:0;right:0;bottom:0;height:min(76vh,calc(100vw * .56));overflow:hidden;pointer-events:none;
   -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 26%);mask-image:linear-gradient(180deg,transparent 0,#000 26%)}
-.ft-crowd-video{position:absolute;left:0;bottom:-8vw;width:100%;height:auto;opacity:0;transition:opacity .6s ease;background:transparent}
-.ft-crowd.has-video .ft-crowd-video{opacity:1}
-.ft-crowd.has-video .ft-crowd-track{opacity:0;animation:none !important}
+.ft-crowd-video{position:absolute;left:0;bottom:-8vw;width:100%;height:auto;background:transparent}
+.ft-crowd:not(.no-video) .ft-crowd-track{display:none}
+.ft-crowd.no-video .ft-crowd-video{display:none}
 .ft-crowd-track{position:absolute;transition:opacity .6s ease;left:0;bottom:0;height:100%;display:flex;width:max-content;will-change:transform}
 .ft-crowd-track img{height:100%;width:auto;display:block;flex:none}
 /* they face right, so the street slides right under the camera: one tile width per loop */
@@ -2216,11 +2216,14 @@ html.xp2-on .xp2{touch-action:none}
   const CROWD = {v:$('#ftCrowdVideo'), box:$('#ftCrowdBox'), tried:0, live:false};
   (() => {
     const {v, box} = CROWD; if (!v) return;
-    if (reduce){ v.remove(); CROWD.v = null; return; }
+    if (reduce){ v.remove(); CROWD.v = null; box.classList.add('no-video'); return; }
     v.muted = true; v.defaultMuted = true; v.setAttribute('muted', ''); v.playsInline = true;
     const show = () => { if (!CROWD.live && v.currentTime > 0 && !v.paused){ CROWD.live = true; box.classList.add('has-video'); } };
     ['playing', 'timeupdate'].forEach(ev => v.addEventListener(ev, show));
-    v.addEventListener('error', () => { CROWD.live = false; box.classList.remove('has-video'); }, true);
+    // if neither file can be played, fall back to the moving still strip
+    const fail = () => { CROWD.live = false; box.classList.add('no-video'); };
+    v.addEventListener('error', fail, true);
+    const last = v.querySelector('source:last-of-type'); if (last) last.addEventListener('error', fail);
     const nudge = () => crowdVideoTick(true);
     ['pointerdown', 'touchstart', 'keydown', 'wheel'].forEach(ev => addEventListener(ev, nudge, {passive:true}));
     document.addEventListener('visibilitychange', () => { if (document.hidden && !v.paused) v.pause(); });
