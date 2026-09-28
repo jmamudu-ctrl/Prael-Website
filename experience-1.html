@@ -86,15 +86,20 @@ html.xp2-on .xp2{touch-action:none}
 .x2-footer{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#ECCFFF 0%,#FFC281 100%);opacity:0;display:none}
 .x2-footer.on{display:block}
 .x2f-art{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.ft-orbit{position:absolute;inset:0;pointer-events:none;perspective:1600px;perspective-origin:74% 52%;opacity:0;transition:opacity 1s ease}
+.x2-footer.idle .ft-orbit{opacity:1}
+.ft-p{position:absolute;left:0;top:0;transform-style:preserve-3d;will-change:transform}
+.ft-p img{position:absolute;left:0;top:0;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;filter:drop-shadow(0 10px 14px rgba(80,40,10,.18))}
+.ft-p img.b{transform:rotateY(180deg)}
 .x2f-star{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;will-change:transform;transform-origin:76% 96%}
 .x2-footer.on.idle .x2f-star{animation:ftBreathe 4.6s ease-in-out infinite}
 @keyframes ftBreathe{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}50%{transform:translateY(-.6%) rotate(.7deg) scale(1.006)}}
 @media (prefers-reduced-motion: reduce){.x2-footer.on.idle .x2f-star{animation:none}}
-.x2f-copy{position:absolute;left:max(20px,calc(157 * var(--u)));top:calc(50% - 104 * var(--u));transform:translateY(-50%);width:max(340px,calc(665 * var(--u)));display:flex;flex-direction:column;gap:calc(22 * var(--u));color:#3B2308}
+.x2f-copy{position:absolute;left:max(20px,calc(157 * var(--u)));top:calc(50% - 147 * var(--u));transform:none;width:max(340px,calc(773 * var(--u)));display:flex;flex-direction:column;gap:calc(22 * var(--u));color:#3B2308}
 .hero .x2f-copy h2,.x2f-copy h2{font-weight:600;font-size:max(28px,calc(72 * var(--u)));letter-spacing:-.06em;line-height:1.2;margin:0;color:#3B2308}
 .x2f-copy h2 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.12em .08em .24em;margin:-.12em -.08em -.24em}
 .x2f-copy h2 .w > span{display:inline-block}
-.x2f-copy p{margin:0;font-size:max(15px,calc(24 * var(--u)));color:#000;max-width:calc(609 * var(--u))}
+.x2f-copy p{margin:0;font-size:max(15px,calc(24 * var(--u)));color:#000;max-width:max(300px,calc(624 * var(--u)))}
 .x2f-form{position:relative;z-index:2;display:flex;align-items:center;gap:calc(22 * var(--u));flex-wrap:nowrap;pointer-events:auto;width:max-content}
 .x2f-form input{font:inherit;line-height:1.2;height:max(48px,calc(58 * var(--u)));font-weight:500;font-size:max(15px,calc(18 * var(--u)));letter-spacing:-.06em;color:#101828;background:#F8FAFC;border:0;border-radius:999px;padding:calc(18 * var(--u)) max(18px,calc(48 * var(--u)));width:max(210px,calc(414 * var(--u)));min-height:48px;box-sizing:border-box;outline:none}
 .x2f-form input:focus-visible{box-shadow:0 0 0 3px rgba(47,13,104,.35)}
@@ -438,10 +443,12 @@ html.xp2-on .xp2{touch-action:none}
 <feOffset dy="24.6077"/><feGaussianBlur stdDeviation="53.839"/><feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
 <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/><feBlend mode="normal" in2="shape" result="effect1_innerShadow"/></filter>
 <linearGradient id="ftGrad" x1="842.424" y1="212.684" x2="951.786" y2="1553.12" gradientUnits="userSpaceOnUse"><stop stop-color="#FFB05C"/><stop offset="1" stop-color="#FF8400"/></linearGradient></defs>
-      <g transform="translate(1009.46 80)"><g class="ftCloud"><path fill="#fff" d="M1.17664 78.8205L333.527 78.8205L305.624 69.366C305.624 69.366 310.765 58.771 304.044 54.4907C297.323 50.2103 286.154 55.9218 286.154 55.9218C286.154 55.9218 276.252 36.1628 258.962 30.9709C241.672 25.779 246.797 48.0504 246.797 48.0504C246.797 48.0504 185.782 -7.34581 143.038 0.821937C100.294 8.98968 102.249 49.4816 102.249 49.4816C102.249 49.4816 46.9557 13.6456 19.9574 30.9709C-7.04092 48.2963 1.17664 78.8205 1.17664 78.8205Z"/></g></g>
+      <g transform="translate(1343 80)"><g class="ftCloud"><path fill="#fff" d="M1.17664 78.8205L333.527 78.8205L305.624 69.366C305.624 69.366 310.765 58.771 304.044 54.4907C297.323 50.2103 286.154 55.9218 286.154 55.9218C286.154 55.9218 276.252 36.1628 258.962 30.9709C241.672 25.779 246.797 48.0504 246.797 48.0504C246.797 48.0504 185.782 -7.34581 143.038 0.821937C100.294 8.98968 102.249 49.4816 102.249 49.4816C102.249 49.4816 46.9557 13.6456 19.9574 30.9709C-7.04092 48.2963 1.17664 78.8205 1.17664 78.8205Z"/></g></g>
+      <g transform="translate(1455 199) scale(1.32)"><g class="ftCloud"><path fill="#fff" d="M1.17664 78.8205L333.527 78.8205L305.624 69.366C305.624 69.366 310.765 58.771 304.044 54.4907C297.323 50.2103 286.154 55.9218 286.154 55.9218C286.154 55.9218 276.252 36.1628 258.962 30.9709C241.672 25.779 246.797 48.0504 246.797 48.0504C246.797 48.0504 185.782 -7.34581 143.038 0.821937C100.294 8.98968 102.249 49.4816 102.249 49.4816C102.249 49.4816 46.9557 13.6456 19.9574 30.9709C-7.04092 48.2963 1.17664 78.8205 1.17664 78.8205Z"/></g></g>
       <g transform="translate(111.04 184.56)"><g class="ftCloud"><path fill="#fff" d="M218.021 83.4422H27.472C27.472 83.4422 -7.14743 63.3392 1.33943 48.5989C9.82628 33.8585 44.8936 66.0205 44.8936 66.0205C44.8936 66.0205 41.5874 15.6238 63.7697 1.77819C85.9521 -12.0674 138.535 59.4874 138.535 59.4874C138.535 59.4874 168.254 18.7111 191.889 25.733C215.523 32.7548 218.021 83.4422 218.021 83.4422Z"/></g></g>
       <g transform="translate(0 769.46)" style="mix-blend-mode:soft-light"><g class="ftCloud"><path fill="#fff" d="M206.762 97.357H-15.118L-58.9287 98.0637C-58.9287 98.0637 -53.5017 49.8257 -39.8499 51.4265C-26.198 53.0272 -16.749 77.982 -16.749 77.982C-16.749 77.982 -11.8277 56.7462 -0.985554 54.253C9.85664 51.7598 24.0604 77.982 24.0604 77.982C24.0604 77.982 34.6136 69.2477 42.8251 67.6788C51.0366 66.1099 74.6232 77.982 74.6232 77.982C74.6232 77.982 74.0399 8.20133 105.715 0.549566C137.389 -7.1022 165.937 67.6788 165.937 67.6788C165.937 67.6788 182.179 41.7451 197.576 43.6536C212.972 45.5622 206.762 97.357 206.762 97.357Z"/></g></g>
     </svg>
+    <div class="ft-orbit ft-back" id="ftOrbitBack" aria-hidden="true"></div>
     <svg class="x2f-star" id="x2fStarSvg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
       <g id="ftStar"><g transform="translate(497 0)"><g id="ftPose">
   <g id="ftStem"><path d="M991.964 472.358C922.774 369.498 798.909 272.117 859.341 192.993C929.176 101.556 1047.85 326.804 976.503 320.116C922.47 315.051 906.346 209.54 1027.84 133.489" stroke="#704313" stroke-width="33.5995" fill="none" stroke-linecap="round"/></g>
@@ -454,11 +461,11 @@ html.xp2-on .xp2{touch-action:none}
     </g>
   </g>
 </g></g></g>
-      <g transform="translate(1454 198) scale(1.32)"><g class="ftCloud"><path fill="#fff" d="M1.17664 78.8205L333.527 78.8205L305.624 69.366C305.624 69.366 310.765 58.771 304.044 54.4907C297.323 50.2103 286.154 55.9218 286.154 55.9218C286.154 55.9218 276.252 36.1628 258.962 30.9709C241.672 25.779 246.797 48.0504 246.797 48.0504C246.797 48.0504 185.782 -7.34581 143.038 0.821937C100.294 8.98968 102.249 49.4816 102.249 49.4816C102.249 49.4816 46.9557 13.6456 19.9574 30.9709C-7.04092 48.2963 1.17664 78.8205 1.17664 78.8205Z"/></g></g>
     </svg>
+    <div class="ft-orbit ft-front" id="ftOrbitFront" aria-hidden="true"></div>
     <div class="x2f-copy" id="x2fCopy">
-      <h2 id="x2fTitle">Every task. Taken care of.</h2>
-      <p id="x2fSub">A personal assistant in WhatsApp, iMessage and Telegram. Ask in a message, and it goes and does it.</p>
+      <h2 id="x2fTitle">A little less on your plate</h2>
+      <p id="x2fSub">From the things you keep putting off to the things that just came up, your personal assistant is one message away on WhatsApp, iMessage and Telegram.</p>
       <form class="x2f-form" id="x2fForm" novalidate>
         <!-- honeypot: people never see or fill this; bots usually do -->
         <input class="x2f-hp" name="company" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -1636,20 +1643,22 @@ html.xp2-on .xp2{touch-action:none}
     tl.fromTo(o, {n:0}, {n:full.length, duration:dur, ease:'none', onUpdate:() => { el.textContent = full.slice(0, Math.round(o.n)); }}, at);
   }
   // footer Prael: final pose is the hero star scaled 1.36 and moved, as in the Figma Footer frame
-  const FT_FINAL = {k:1.36, x:-456, y:-187};
-  let ftCenter = null;
+  // Footer v1 pose (k 1.36) re-scaled to the smaller Footer v2 frame, centred where the v2 frame puts him
+  const FT_V1 = {k:1.36, x:-456, y:-187, fx:1419.5, fy:982.5}, FT_V2 = {k:.626, fx:1450, fy:560};
+  let ftCenter = {x:224.17 + 1369.84 / 2 + 497, y:235.43 + 1321.61 / 2};
   function placeFooterStar(v){
     const star = $('#ftStar');
-    if (!ftCenter){ const b = $('#ftStarPath') ? $('#ftStarPath').getBBox() : {x:224, y:212, width:1370, height:1360}; ftCenter = {x:b.x + b.width / 2 + 497, y:b.y + b.height / 2}; }
     // where the little Prael is on screen, in footer coordinates (both are 1920×1080 slices)
     const c = x2.cam, w = W2 / c.s, h = H2 / c.s, vx = c.x - w / 2, vy = c.y - h / 2;
     const sx = (PR.x - vx) * c.s, sy = (PR.y - vy) * c.s;
     // phones: a smaller Prael, bottom centre, under the copy
-    const portrait = x2Portrait(), K = portrait ? .44 : FT_FINAL.k;
+    const portrait = x2Portrait(), K = portrait ? .44 : FT_V2.k;
     $('#x2Footer .x2f-art').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
+    $('#x2Footer .x2f-star').setAttribute('preserveAspectRatio', portrait ? 'xMidYMax slice' : 'xMidYMid slice');
     const k0 = .032 * c.s * K;
     const e = v, k = k0 + (K - k0) * e;
-    const endX = portrait ? 960 : ftCenter.x * FT_FINAL.k + FT_FINAL.x, endY = portrait ? 850 : ftCenter.y * FT_FINAL.k + FT_FINAL.y;
+    const e1x = ftCenter.x * FT_V1.k + FT_V1.x, e1y = ftCenter.y * FT_V1.k + FT_V1.y, r = FT_V2.k / FT_V1.k;
+    const endX = portrait ? 960 : FT_V2.fx + (e1x - FT_V1.fx) * r, endY = portrait ? 850 : FT_V2.fy + (e1y - FT_V1.fy) * r;
     const x = sx + (endX - sx) * e, y = sy + (endY - sy) * e, rot = (1 - e) * -12;
     star.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${rot.toFixed(2)}) scale(${k.toFixed(4)}) translate(${(-ftCenter.x).toFixed(1)} ${(-ftCenter.y).toFixed(1)})`);
     $('#x2Footer').classList.toggle('idle', v >= .999);
@@ -1951,6 +1960,50 @@ html.xp2-on .xp2{touch-action:none}
     });
   }
 
+
+  // ---- Footer v2: the preloader's papers orbit Prael ----
+  const FTO = {items:[], built:false, cx:0, cy:0, R:0, s:1, on:false};
+  async function buildFooterOrbit(){
+    if (FTO.built) return; FTO.built = true;
+    try { await fontsReady; } catch(e){}
+    const back = $('#ftOrbitBack'), front = $('#ftOrbitFront');
+    DOCS.forEach((doc, i) => {
+      const {front:fc, back:bc} = paintDoc(doc);
+      const el = document.createElement('div'); el.className = 'ft-p';
+      const a = new Image(); a.src = fc.toDataURL('image/png'); a.alt = '';
+      const b = new Image(); b.src = bc.toDataURL('image/png'); b.alt = ''; b.className = 'b';
+      el.append(a, b); back.appendChild(el);
+      FTO.items.push({el, w:doc.w, h:doc.h, angle:(i / DOCS.length) * Math.PI * 2, y:((i % 5) - 2) * .16 + ((i * 37) % 10 - 5) / 70,
+        lean:((i * 53) % 11 - 5) / 40, roll:((i * 29) % 9 - 4) * 3, speed:.16 + (i % 3) * .015, seed:i * 1.7, inFront:false});
+    });
+    measureFooterOrbit();
+  }
+  function measureFooterOrbit(){
+    const p = $('#ftStarPath'); if (!p) return;
+    const r = p.getBoundingClientRect(); if (!r.width) return;
+    FTO.cx = r.left + r.width / 2; FTO.cy = r.top + r.height * .54; FTO.R = r.width * .7; FTO.s = Math.max(.42, Math.min(1, r.width / 860));
+  }
+  addEventListener('resize', () => { if (FTO.built) setTimeout(measureFooterOrbit, 300); });
+  function footerOrbitTick(T){
+    const f = $('#x2Footer');
+    if (!f || !f.classList.contains('idle')){ FTO.on = false; return; }
+    if (!FTO.built){ buildFooterOrbit(); return; }
+    if (!FTO.on){ FTO.on = true; measureFooterOrbit(); }
+    const back = $('#ftOrbitBack'), front = $('#ftOrbitFront'), tilt = 16.5 * Math.PI / 180;
+    FTO.items.forEach(it => {
+      const a = it.angle + T * it.speed * (reduce ? 0 : 1);
+      const ox = Math.cos(a) * FTO.R, oz = Math.sin(a) * FTO.R * .9;
+      let oy = it.y * FTO.R + Math.sin(T * .8 + it.seed) * 6 * FTO.s;
+      // the orbit is tilted like the preloader's ribbon
+      const x = ox * Math.cos(tilt) - oy * Math.sin(tilt), y = ox * Math.sin(tilt) + oy * Math.cos(tilt);
+      const k = .42 * FTO.s, w = it.w * k, h = it.h * k;
+      it.el.style.width = w + 'px'; it.el.style.height = h + 'px';
+      it.el.style.transform = `translate3d(${(FTO.cx + x - w / 2).toFixed(1)}px, ${(FTO.cy + y - h / 2).toFixed(1)}px, ${oz.toFixed(1)}px) rotateY(${(-a * 180 / Math.PI + 90).toFixed(1)}deg) rotateX(${(it.lean * 40).toFixed(1)}deg) rotateZ(${(it.roll + Math.sin(T + it.seed) * 3).toFixed(1)}deg)`;
+      const nowFront = oz > 0;
+      if (nowFront !== it.inFront){ it.inFront = nowFront; (nowFront ? front : back).appendChild(it.el); }
+    });
+  }
+
   // ---- Hair and clothes in the wind ----
   // The artwork is one flat drawing, so for each person we copy just the shapes around their hair and
   // clothing, ripple that copy with a turbulence filter, and fade it into the original with a soft mask.
@@ -2020,6 +2073,7 @@ html.xp2-on .xp2{touch-action:none}
     $('#x2Prael').setAttribute('transform', `translate(${(PR.x + dx).toFixed(1)} ${(PR.y + bob).toFixed(1)}) rotate(${sway.toFixed(1)})`);
     // the floating cards drift a touch in the same wind
     skyWind(T, g, calm);
+    footerOrbitTick(T);
     // footer Prael breathes and leans in the wind
     // the dots in each "Hey Prael" bubble bounce
     document.querySelectorAll('#x2Scenes .dots circle').forEach((c, i) => {
