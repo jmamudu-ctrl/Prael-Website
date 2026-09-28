@@ -2033,6 +2033,25 @@ html.xp2-on .xp2{touch-action:none}
     });
   }
 
+
+  // ---- Footer Prael: his eyes (and a little of his smile) follow the cursor or your finger ----
+  const FTE = {tx:0, ty:0, x:0, y:0, last:0};
+  const ftLook = (px, py) => { FTE.last = performance.now();
+    const dx = px - FTO.cx, dy = py - (FTO.cy - innerHeight * .08), d = Math.hypot(dx, dy) || 1, pull = Math.min(1, d / 420);
+    FTE.tx = dx / d * pull; FTE.ty = dy / d * pull; };
+  addEventListener('pointermove', e => { if ($('#x2Footer').classList.contains('idle')) ftLook(e.clientX, e.clientY); }, {passive:true});
+  addEventListener('touchstart', e => { if ($('#x2Footer').classList.contains('idle') && e.touches[0]) ftLook(e.touches[0].clientX, e.touches[0].clientY); }, {passive:true});
+  function footerEyesTick(){
+    if (!$('#x2Footer').classList.contains('idle')) return;
+    // after a few seconds without input, he glances back to the middle
+    if (performance.now() - FTE.last > 3500){ FTE.tx *= .96; FTE.ty *= .96; }
+    FTE.x += (FTE.tx - FTE.x) * .12; FTE.y += (FTE.ty - FTE.y) * .12;
+    const eyes = $('#ftEyes'), mouth = $('#ftMouth'); if (!eyes) return;
+    const m = reduce ? 0 : 1;
+    eyes.setAttribute('transform', `translate(${(FTE.x * 38 * m).toFixed(1)} ${(FTE.y * 30 * m).toFixed(1)})`);
+    if (mouth) mouth.setAttribute('transform', `translate(${(FTE.x * 16 * m).toFixed(1)} ${(FTE.y * 12 * m).toFixed(1)})`);
+  }
+
   // ---- Hair and clothes in the wind ----
   // The artwork is one flat drawing, so for each person we copy just the shapes around their hair and
   // clothing, ripple that copy with a turbulence filter, and fade it into the original with a soft mask.
@@ -2103,6 +2122,7 @@ html.xp2-on .xp2{touch-action:none}
     // the floating cards drift a touch in the same wind
     skyWind(T, g, calm);
     footerOrbitTick(T);
+    footerEyesTick();
     // footer Prael breathes and leans in the wind
     // the dots in each "Hey Prael" bubble bounce
     document.querySelectorAll('#x2Scenes .dots circle').forEach((c, i) => {
