@@ -33,7 +33,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .crumbs a{text-decoration:none}.crumbs a:hover{color:var(--ink)}
 h1{margin:0 0 56px;color:var(--ink);font-weight:500;font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.045em;max-width:14ch}
 
-.grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:start}
+.grid{display:block}
 @media (max-width:980px){.grid{grid-template-columns:1fr}}
 .toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 100px);font-size:14.5px}
 @media (max-width:980px){.toc{position:static;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0}}
@@ -46,7 +46,7 @@ h1{margin:0 0 56px;color:var(--ink);font-weight:500;font-size:clamp(40px,6vw,72p
 .pdf{display:inline-block;margin-top:18px;font-size:14px;color:var(--muted);text-underline-offset:3px}
 .pdf:hover{color:var(--ink)}
 
-.doc{max-width:700px;min-width:0}
+.doc{max-width:760px;min-width:0}
 .updated{display:flex;flex-direction:column;gap:2px;margin-bottom:36px;font-size:14px}
 .updated span{color:var(--muted)}
 .updated b{color:var(--ink);font-weight:600;font-size:16px}
@@ -110,25 +110,6 @@ td li{margin:3px 0}
   <h1>Privacy Policy and Terms of Service</h1>
 
   <div class="grid">
-    <aside class="toc" aria-labelledby="toc-h">
-      <p class="toc-h" id="toc-h">Table of Contents</p>
-      <ol id="tocList">
-        <li><a href="#introduction"><i>01.</i>Introduction</a></li>
-        <li><a href="#personal-data-we-obtain"><i>02.</i>Personal Data We Obtain</a></li>
-        <li><a href="#lawful-bases"><i>03.</i>Lawful Bases for Processing</a></li>
-        <li><a href="#purposes"><i>04.</i>Purposes and Lawful Basis</a></li>
-        <li><a href="#your-rights"><i>05.</i>Your Rights as a Data Subject</a></li>
-        <li><a href="#california"><i>06.</i>California Privacy Rights</a></li>
-        <li><a href="#sharing"><i>07.</i>Who We Share Your Data With</a></li>
-        <li><a href="#retention"><i>08.</i>Retention of Your Data</a></li>
-        <li><a href="#security"><i>09.</i>How Data Is Stored and Secured</a></li>
-        <li><a href="#minors"><i>10.</i>Services to Minors</a></li>
-        <li><a href="#cookies"><i>11.</i>Cookies</a></li>
-        <li><a href="#transfers"><i>12.</i>International Transfer of Data</a></li>
-        <li><a href="#changes"><i>13.</i>Changes to This Notice</a></li>
-        <li><a href="#contact"><i>14.</i>Contact Information</a></li>
-      </ol>
-    </aside>
 
     <article class="doc">
       <div class="updated"><span>Last Updated</span><b>October 2026</b></div>
