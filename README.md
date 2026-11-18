@@ -34,3 +34,10 @@ Older notes:
 
 Note: the claude.ai preview link can't send data to Supabase (its security policy blocks outside requests),
 so test the form on your Vercel URL.
+
+
+## Creators page (/creators)
+Creators apply with first name, last name, email and at least one of LinkedIn, TikTok or Instagram.
+1. In Supabase, run `supabase/migrations/20261022000000_creator_applications.sql` (SQL Editor → New query → Run).
+2. In `creators.html`, search for `YOUR-PROJECT-REF` and paste the same Project URL and anon key as `index.html`.
+3. Applications appear in Table Editor → creator_applications.
